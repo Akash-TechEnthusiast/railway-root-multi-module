@@ -1,0 +1,2 @@
+rootProject.name = "railway-root-multi-module"
+include("railway-web", "railway-utils","railway-common-entity")
