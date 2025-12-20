@@ -36,7 +36,7 @@ public class UserController {
 	public @ResponseBody String addUsers(@RequestBody User user) {
 
 		User newuser = new User();
-		newuser.setUserName(user.getUserName());
+		newuser.setUsername(user.getUsername());
 
 		newuser.setMobileNumber(user.getMobileNumber());
 		newuser.setEmail(user.getEmail());

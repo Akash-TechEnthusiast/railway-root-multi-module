@@ -35,7 +35,7 @@ public class AuthenticationController {
                 jwtRequest.getUsername());
 
         log.info("Received Request at authenticaton controller");
-        final String jwt = jwtUtil.generateToken(userDetails.getUserName(), userDetails.getRoles());
+        final String jwt = jwtUtil.generateToken(userDetails.getUsername(), userDetails.getRoles());
 
         return new JwtResponse(jwt);
     }
