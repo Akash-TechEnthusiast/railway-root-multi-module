@@ -31,7 +31,7 @@ public class AuthenticationController {
     public JwtResponse createAuthenticationToken(@RequestBody JwtRequest jwtRequest) throws Exception {
 
         authenticate(jwtRequest.getUsername(), jwtRequest.getPassword());
-        final User userDetails = userRepository.findByUserName(
+        final User userDetails = userRepository.findByUsername(
                 jwtRequest.getUsername());
 
         log.info("Received Request at authenticaton controller");

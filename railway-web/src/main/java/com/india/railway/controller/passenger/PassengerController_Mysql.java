@@ -1,9 +1,11 @@
 package com.india.railway.controller.passenger;
 
+import com.india.railway.exception.ApiResponse;
 import com.india.railway.service.mysql.PassengerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -25,8 +27,10 @@ public class PassengerController_Mysql {
 
     // Single constructor — Spring injects the dependency
 
-    @PostMapping("/create")
-    public String addPassenger(@RequestBody Passenger passenger) throws IllegalAccessException {
+    @PostMapping(path = "/create",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ApiResponse<Passenger>> addPassenger(@RequestBody Passenger passenger) throws IllegalAccessException {
         return passengerServiceImpl.addPassenger(passenger);
     }
 

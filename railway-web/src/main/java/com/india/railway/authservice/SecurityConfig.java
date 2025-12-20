@@ -44,18 +44,20 @@ public class SecurityConfig {
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
 
-        /*
-         * http
-         * .csrf().disable() // Optional: Disable CSRF only for testing
-         * .authorizeRequests()
-         * .requestMatchers("/login", "/register", "/").permitAll() // Allow access to
-         * login and register
-         * .anyRequest().authenticated(); // Require authentication for all other URLs
-         * 
-         * return http.build();
-         */
+        http
+                .csrf(csrf -> csrf.disable())
+                .cors(cors -> cors.configurationSource(corsConfigurationSource()))
+                .authorizeHttpRequests(auth -> auth
+                        .anyRequest().permitAll()
+                )
+                .sessionManagement(session ->
+                        session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                );
 
-        http.csrf(customizer -> customizer.disable())
+        return http.build();
+
+    }
+      /*  http.csrf(customizer -> customizer.disable())
                 .cors(corsCustomizer -> corsCustomizer.configurationSource(corsConfigurationSource())) // ✅ Custom CORS
                 .authorizeHttpRequests(authorizeRequests -> {
                     try {
@@ -65,18 +67,9 @@ public class SecurityConfig {
                                         "/products",
                                         "/userstest/**", "/glocud/recordsave", "/api/student/**",
                                         "/products_elastic/**", "/products_elastic/fuzzymatchallfields",
-                                        "/api/countries/**", "api/**", "/employee/**", "/api/**","/test/**")
-                                .permitAll() // Allow
-                                // access
-                                // to
-                                // root
-                                // URL
+                                        "/api/countries/**", "/employee/**", "/api/**","/test/**")
+                                .permitAll()
                                 .anyRequest().authenticated(); // All other URLs require authentication
-                        // .and()
-                        // .oauth2Login()
-                        // .defaultSuccessUrl("/home", true); // Redirects to /home after successful
-                        // login
-
                     } catch (Exception e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -87,11 +80,8 @@ public class SecurityConfig {
         http.sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter,
                         UsernamePasswordAuthenticationFilter.class);
+        return http.build();*/
 
-        ;
-
-        return http.build();
-    }
 
     @Bean
     public PasswordEncoder passwordEncoder() {

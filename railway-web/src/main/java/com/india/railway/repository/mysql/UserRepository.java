@@ -11,7 +11,7 @@ import com.india.railway.model.mysql.User;
 public interface UserRepository extends JpaRepository<User, Long> {
     // Define custom queries or methods if needed
 
-    User findByUserName(String username);
+    User findByUsername(String username);
 
     Optional<User> findByEmail(String email);
 

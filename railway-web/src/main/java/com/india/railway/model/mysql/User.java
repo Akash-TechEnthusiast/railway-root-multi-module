@@ -3,8 +3,6 @@ package com.india.railway.model.mysql;
 import java.util.List;
 
 import jakarta.persistence.*;
-import jakarta.validation.Valid;
-import jakarta.validation.constraints.Size;
 
 @Entity
 @Table(name = "users")
@@ -12,7 +10,7 @@ public class User {
 
 	public User(Long id, String username, String email) {
 		this.id = id;
-		this.userName = username;
+		this.username = username;
 		this.email = email;
 	}
 
@@ -20,8 +18,8 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
-	@Column(nullable = false, unique = true)
-	private String userName;
+	@Column
+	private String username;
 
 	@Column
 	private String email;
@@ -65,14 +63,14 @@ public class User {
 	}
 
 	public User(String username, String password, UserProfile userProfile) {
-		this.userName = username;
+		this.username = username;
 		this.password = password;
 		this.userProfile = userProfile;
 	}
 
 	public User(Long id, String username) {
 		this.id = id;
-		this.userName = username;
+		this.username = username;
 	}
 
 	public Long getId() {
@@ -84,11 +82,11 @@ public class User {
 	}
 
 	public String getUserName() {
-		return userName;
+		return username;
 	}
 
 	public void setUserName(String username) {
-		this.userName = username;
+		this.username = username;
 	}
 
 	public String getEmail() {

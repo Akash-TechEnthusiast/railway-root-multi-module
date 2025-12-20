@@ -25,7 +25,7 @@ public class CustomUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) {
 
-        com.india.railway.model.mysql.User userDetails = userRepository.findByUserName(
+        com.india.railway.model.mysql.User userDetails = userRepository.findByUsername(
                 username);
 
         // Convert roles to GrantedAuthority

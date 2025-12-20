@@ -5,17 +5,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
+import com.india.railway.exception.*;
+import com.india.railway.utility.EntityValidation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.india.railway.exception.EntityNotFoundException;
-import com.india.railway.exception.NoSuchEmployeeExistsException;
-import com.india.railway.exception.NoSuchPassengerExistsException;
-import com.india.railway.exception.PassengerAlreadyExistsException;
 import com.india.railway.model.mysql.Address;
 import com.india.railway.model.mysql.Passenger;
 import com.india.railway.model.mysql.Train;
@@ -40,6 +40,12 @@ public class PassengerServiceImpl implements PassengerService {
 
     @Autowired
     AddressRepository addressRepository;
+
+    @Autowired
+    EntityValidation entityValidation;
+
+    @Autowired
+    ApiResponseFactory apiResponseFactory;
 
     @Override
     public Optional<Passenger> getPassenger(Long id) {
@@ -70,29 +76,31 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
     @Override
-    public String addPassenger(Passenger passenger) throws IllegalAccessException {
-        // passengerRepository.save(passenger);
-        // return "";
-        // throw new UnsupportedOperationException("Unimplemented method
-        // 'addPassenger'");
+    @Transactional
+    public ResponseEntity<ApiResponse<Passenger>> addPassenger(Passenger passenger) throws IllegalAccessException {
 
-        Passenger existingPassenger = passengerRepository.findById(passenger.getId()).orElse(null);
-        if (existingPassenger == null) {
 
-            // long nextvalueis =
-            // autoCodeGeneratorService.generateNextId("passenger_entity", 1);
-            // System.out.println(nextvalueis);
-
-            if (passenger != null && (passenger.getTrains() == null || passenger.getTrains().isEmpty())) {
-                throw new EntityNotFoundException("Trains list could not be empty ");
-            }
-
-            autoCodeGeneratorService.generateId(passenger);
-
-            passengerRepository.save(passenger);
-            return "Passenger added successfully";
-        } else
+        if (passengerRepository.existsById(passenger.getId())) {
             throw new PassengerAlreadyExistsException("Passenger already exists!!");
+        }
+
+        if (passenger.getTrains() == null || passenger.getTrains().isEmpty()) {
+            throw new EntityNotFoundException("Trains list could not be empty");
+        }
+
+        List<String> validationErrors = entityValidation.validate(passenger);
+        if (!validationErrors.isEmpty()) {
+            return apiResponseFactory.validationError(validationErrors);
+        }
+
+        autoCodeGeneratorService.generateId(passenger);
+        Passenger saved = passengerRepository.save(passenger);
+
+        return apiResponseFactory.success(
+                saved,
+                "Passenger created successfully",
+                HttpStatus.CREATED
+        );
     }
 
     @Override
