@@ -1,7 +1,7 @@
 package com.india.railway.controller;
 
-import com.india.railway.library.CommonUtil;
-import com.india.railway.library.ExampleUtil;
+import com.india.railway.hello.CommonUtil;
+import com.india.railway.test.ExampleUtil;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
