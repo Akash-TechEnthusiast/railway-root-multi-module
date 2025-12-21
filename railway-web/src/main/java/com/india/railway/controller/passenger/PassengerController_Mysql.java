@@ -34,6 +34,12 @@ public class PassengerController_Mysql {
         return passengerServiceImpl.addPassenger(passenger);
     }
 
+    @PutMapping("updatePassenger/{id}")
+    public ResponseEntity<ApiResponse<Passenger>> updatePassenger(@RequestBody Passenger passenger) {
+        return passengerServiceImpl.updatePassenger(passenger);
+    }
+
+
     @GetMapping("/fetch_all_passenger")
     public List<Passenger> getAllPassengers() {
         return passengerServiceImpl.getAllPassengers();
@@ -45,10 +51,6 @@ public class PassengerController_Mysql {
         return passengerServiceImpl.getPassenger(id);
     }
 
-    @PutMapping("updatePassenger/{id}")
-    public String updatePassenger(@RequestBody Passenger passenger) {
-        return passengerServiceImpl.updatePassenger(passenger);
-    }
 
     @GetMapping("/bypagewise")
     public ResponseEntity<Page<Passenger>> getAllPassengers(

@@ -1,5 +1,6 @@
 package com.india.railway.service.mysql;
 
+import jakarta.persistence.Tuple;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,10 +18,21 @@ public class TransactionIdGeneratorService {
     public Long generateNextId(String entity_name, int incrementSize) {
         // Fetch the current value from the id_generator table
 
-        Query selectQuery = entityManager.createNativeQuery(
-                "SELECT current_value FROM auto_code_generation WHERE entity_name = :entity_name FOR UPDATE");
-        selectQuery.setParameter("entity_name", entity_name);
-        Long currentValue = ((Number) selectQuery.getSingleResult()).longValue();
+        Query query = entityManager.createNativeQuery(
+                "SELECT current_value AS current_value, " +
+                        "prefix AS prefix, " +
+                        "year AS year " +
+                        "FROM auto_code_generation " +
+                        "WHERE entity_name = :entity_name FOR UPDATE",
+                Tuple.class);
+
+        query.setParameter("entity_name", entity_name);
+
+        Tuple tuple = (Tuple) query.getSingleResult();
+
+        Long currentValue = tuple.get("current_value", Long.class);
+        String  prefix = tuple.get("prefix", String.class);
+        String  year = tuple.get("year", String.class);
 
         // Increment the current value
         Long nextValue = currentValue + incrementSize;

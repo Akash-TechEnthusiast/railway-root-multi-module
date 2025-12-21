@@ -3,16 +3,12 @@ package com.india.railway.model.mysql;
 import java.util.List;
 
 import jakarta.persistence.*;
+import lombok.Data;
 
 @Entity
+@Data
 @Table(name = "users")
 public class User {
-
-	public User(Long id, String username, String email) {
-		this.id = id;
-		this.username = username;
-		this.email = email;
-	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -39,16 +35,9 @@ public class User {
 
 	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	@JoinTable(name = "user_role", // Name of the join table
-			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), // Foreign key in
-																						// join table
-																						// pointing to
-																						// Passenger
-			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id") // Foreign
-																							// key in
-																							// join
+			joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
+			inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
 	)
-	// @NotEmpty(message = "Passenger must have at least one address.")
-
 	private List<Role> roles;
 
 	public List<Role> getRoles() {
@@ -71,6 +60,12 @@ public class User {
 	public User(Long id, String username) {
 		this.id = id;
 		this.username = username;
+	}
+
+	public User(Long id, String username, String email) {
+		this.id = id;
+		this.username = username;
+		this.email = email;
 	}
 
 	public Long getId() {

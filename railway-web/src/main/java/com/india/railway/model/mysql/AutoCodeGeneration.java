@@ -12,13 +12,13 @@ public class AutoCodeGeneration {
 
     private Long id;
 
-    private String entity_name;
+    private String entityName;
 
     private String prefix;
 
     private String year;
 
-    private long current_value;
+    private long currentValue;
 
     // Constructors, getters, setters
 

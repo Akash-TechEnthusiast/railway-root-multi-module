@@ -17,7 +17,7 @@ public interface PassengerService {
     ResponseEntity<ApiResponse<Passenger>> addPassenger(Passenger passenger) throws IllegalAccessException;
 
     // Method to update details of a Customer
-    String updatePassenger(Passenger passenger);
+    ResponseEntity<ApiResponse<Passenger>> updatePassenger(Passenger passenger);
 
     List<Passenger> getAllPassengers();
 

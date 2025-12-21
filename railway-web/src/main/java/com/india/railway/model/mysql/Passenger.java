@@ -68,7 +68,7 @@ public class Passenger extends Auditable {
 
         @NotNull(message = "Date of birth cannot be null")
         @Past(message = "Date of birth must be a past date")
-        @DateTimeFormat(pattern = "yyyy-MM-dd") // Ensures proper date formatting
+        @DateTimeFormat(pattern = "yyyy-MM-dd")
         private LocalDate dob;
 
         @NotNull(message = "Pincode number cannot be null")
@@ -84,36 +84,27 @@ public class Passenger extends Auditable {
         private String gender;
 
         @OneToOne(cascade = CascadeType.ALL, optional = false)
-        @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false) // Foreign key in User table
+        @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
         @NotNull(message = "user must not be null")
         private User user;
 
-        // ------------------------------------------------------------------
-
         @OneToMany(cascade = CascadeType.ALL)
         @JoinTable(name = "passenger_address", // Name of the join table
-                        joinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"), // Foreign key in
-                                                                                                       // join table
-                                                                                                       // pointing to
-                                                                                                       // Passenger
-                        inverseJoinColumns = @JoinColumn(name = "address_id", referencedColumnName = "id") // Foreign
-                                                                                                           // key in
-                                                                                                           // join
-        )
-        // @NotEmpty(message = "Passenger must have at least one address.")
-        @Valid // Ensure this is present to validate related entities (address)
-        @Size(min = 1, message = "Passenger must have at least one address.") // Ensure at least one post
+                        joinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"),
+                        inverseJoinColumns = @JoinColumn(name = "address_id", referencedColumnName = "id") )
+
+        @Valid
+        @Size(min = 1, message = "Passenger must have at least one address.")
         private List<Address> address;
 
 
         @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
         @JoinTable(name = "passenger_train", // Name of the join table
-                joinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"), // Foreign key in
+                joinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"),
 
-                inverseJoinColumns = @JoinColumn(name = "train_id", referencedColumnName = "id") // Foreign
+                inverseJoinColumns = @JoinColumn(name = "train_id", referencedColumnName = "id")
 
         )
-        // @NotEmpty(message = "A passenger must be book ticket in at least one train.")
         private Set<Train> trains = new HashSet<>();
 
 

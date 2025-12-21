@@ -75,6 +75,23 @@ public class PassengerServiceImpl implements PassengerService {
         );
     }
 
+    @Override
+    public ResponseEntity<ApiResponse<Passenger>> updatePassenger(Passenger passenger) {
+        Passenger existingPassenger = passengerRepository.findById(passenger.getId()).orElse(null);
+        if (existingPassenger == null)
+            throw new NoSuchEmployeeExistsException("No Such Employee exists!!");
+        else {
+            existingPassenger.setName(passenger.getName());
+            existingPassenger.setAddress(passenger.getAddress());
+            Passenger updated = passengerRepository.save(existingPassenger);
+
+            return apiResponseFactory.success(
+                    updated,
+                    "Passenger updated successfully",
+                    HttpStatus.CREATED
+            );
+        }
+    }
 
     @Override
     public Optional<Passenger> getPassenger(Long id) {
@@ -105,18 +122,7 @@ public class PassengerServiceImpl implements PassengerService {
     }
 
 
-    @Override
-    public String updatePassenger(Passenger passenger) {
-        Passenger existingPassenger = passengerRepository.findById(passenger.getId()).orElse(null);
-        if (existingPassenger == null)
-            throw new NoSuchEmployeeExistsException("No Such Employee exists!!");
-        else {
-            existingPassenger.setName(passenger.getName());
-            existingPassenger.setAddress(passenger.getAddress());
-            passengerRepository.save(existingPassenger);
-            return "Record updated Successfully";
-        }
-    }
+
 
     @Override
     public List<Passenger> getAllPassengers() {
