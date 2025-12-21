@@ -113,12 +113,27 @@ public class Passenger extends Auditable {
 
         // @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch =
         // FetchType.LAZY)
-        @ManyToMany(fetch = FetchType.LAZY)
+        /*@ManyToMany(fetch = FetchType.LAZY)
         @JoinTable(name = "passenger_train", // Name of the join table
                         joinColumns = @JoinColumn(name = "passenger_id"), // Column in the join table for Student
                         inverseJoinColumns = @JoinColumn(name = "train_id") // Column in the join table for Course
         )
         @Valid
+        // @NotEmpty(message = "A passenger must be book ticket in at least one train.")
+        private Set<Train> trains = new HashSet<>();*/
+
+
+
+        @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)
+        @JoinTable(name = "passenger_train", // Name of the join table
+                joinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"), // Foreign key in
+                // join table
+                // pointing to
+                // Passenger
+                inverseJoinColumns = @JoinColumn(name = "train_id", referencedColumnName = "id") // Foreign
+                // key in
+                // join
+        )
         // @NotEmpty(message = "A passenger must be book ticket in at least one train.")
         private Set<Train> trains = new HashSet<>();
         // private Set<Department> departments = new HashSet<>();

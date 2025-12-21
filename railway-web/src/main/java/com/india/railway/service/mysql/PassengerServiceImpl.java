@@ -48,6 +48,35 @@ public class PassengerServiceImpl implements PassengerService {
     ApiResponseFactory apiResponseFactory;
 
     @Override
+    @Transactional
+    public ResponseEntity<ApiResponse<Passenger>> addPassenger(Passenger passenger) throws IllegalAccessException {
+
+
+        if (passengerRepository.existsById(passenger.getId())) {
+            throw new PassengerAlreadyExistsException("Passenger already exists!!");
+        }
+
+        if (passenger.getTrains() == null || passenger.getTrains().isEmpty()) {
+            throw new EntityNotFoundException("Trains list could not be empty");
+        }
+
+        List<String> validationErrors = entityValidation.validate(passenger);
+        if (!validationErrors.isEmpty()) {
+            return apiResponseFactory.validationError(validationErrors);
+        }
+
+        autoCodeGeneratorService.generateId(passenger);
+        Passenger saved = passengerRepository.save(passenger);
+
+        return apiResponseFactory.success(
+                saved,
+                "Passenger created successfully",
+                HttpStatus.CREATED
+        );
+    }
+
+
+    @Override
     public Optional<Passenger> getPassenger(Long id) {
         // TODO Auto-generated method stub
         Passenger passenger = passengerRepository.findPassengerWithTrains(id)
@@ -75,33 +104,6 @@ public class PassengerServiceImpl implements PassengerService {
         // 'getPassenger'");
     }
 
-    @Override
-    @Transactional
-    public ResponseEntity<ApiResponse<Passenger>> addPassenger(Passenger passenger) throws IllegalAccessException {
-
-
-        if (passengerRepository.existsById(passenger.getId())) {
-            throw new PassengerAlreadyExistsException("Passenger already exists!!");
-        }
-
-        if (passenger.getTrains() == null || passenger.getTrains().isEmpty()) {
-            throw new EntityNotFoundException("Trains list could not be empty");
-        }
-
-        List<String> validationErrors = entityValidation.validate(passenger);
-        if (!validationErrors.isEmpty()) {
-            return apiResponseFactory.validationError(validationErrors);
-        }
-
-        autoCodeGeneratorService.generateId(passenger);
-        Passenger saved = passengerRepository.save(passenger);
-
-        return apiResponseFactory.success(
-                saved,
-                "Passenger created successfully",
-                HttpStatus.CREATED
-        );
-    }
 
     @Override
     public String updatePassenger(Passenger passenger) {
