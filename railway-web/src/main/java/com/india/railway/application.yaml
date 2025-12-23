@@ -32,7 +32,7 @@ spring:
         database: yt-demo
   # database : indian_railway
   datasource:
-    url: jdbc:mysql://localhost:3306/train_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+    url: jdbc:mysql://localhost:3306/rail_project?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
     username: root   #root
     password: WANAparthy@544  #WANAparthy@544
     driver-class-name: com.mysql.cj.jdbc.Driver

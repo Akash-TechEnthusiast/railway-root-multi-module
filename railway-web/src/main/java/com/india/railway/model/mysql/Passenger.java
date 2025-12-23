@@ -84,9 +84,11 @@ public class Passenger extends Auditable {
         private String pnumber;
         private String gender;
 
-        @OneToOne(cascade = CascadeType.ALL, optional = false)
+
+        @OneToOne(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
         @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
         @NotNull(message = "user must not be null")
+        @Valid
         private User user;
 
         @OneToMany(cascade = CascadeType.ALL,fetch = FetchType.LAZY)
@@ -94,9 +96,9 @@ public class Passenger extends Auditable {
                         joinColumns = @JoinColumn(name = "passenger_id", referencedColumnName = "id"),
                         inverseJoinColumns = @JoinColumn(name = "address_id", referencedColumnName = "id") )
 
-        @Valid
         @Size(min = 1, message = "Passenger must have at least one address.")
         private List<Address> address;
+
 
 
         @ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE }, fetch = FetchType.LAZY)

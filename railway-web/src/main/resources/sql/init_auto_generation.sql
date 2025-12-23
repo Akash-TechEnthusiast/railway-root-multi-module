@@ -21,3 +21,4 @@ VALUES ('7', '1', 'user_number', 'IND/RAIL/USR/', '2024/');
 
 INSERT IGNORE INTO `auto_code_generation` (`id`, `current_value`, `entity_name`, `prefix`, `year`)
 VALUES ('8', '1', 'user_numberR', 'IND/RAIL/USER/', '2024/');
+

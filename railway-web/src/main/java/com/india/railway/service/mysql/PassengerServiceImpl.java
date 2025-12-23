@@ -9,6 +9,7 @@ import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
 import com.india.railway.exception.*;
+import com.india.railway.model.mysql.*;
 import com.india.railway.utility.EntityValidation;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import com.india.railway.model.mysql.Address;
-import com.india.railway.model.mysql.Passenger;
-import com.india.railway.model.mysql.Train;
-import com.india.railway.model.mysql.TrainNameProjection;
 import com.india.railway.repository.mysql.AddressRepository;
 import com.india.railway.repository.mysql.PassengerRepository;
 import com.india.railway.repository.mysql.TrainRepository;
@@ -119,9 +116,14 @@ public ResponseEntity<ApiResponse<Passenger>> updatePassenger(Passenger passenge
 }
 
 @Override
-public Optional<Passenger> getPassenger(Long id) {
+public Optional<Passenger> getPassenger(String id) {
     // TODO Auto-generated method stub
-    Passenger passenger = passengerRepository.findPassengerWithTrains(id)
+
+    Optional<Passenger> single = passengerRepository.findById(id);
+    String value=single.get().getUser().getId();
+    String username=single.get().getUser().getUsername();
+
+    /*Passenger passenger = passengerRepository.findPassengerWithTrains(id)
             .orElseThrow(() -> new RuntimeException("Passenger not found"));
 
     List<TrainNameProjection> traisnList = trainRepository.findTrainsByPassengerId(id);
@@ -134,9 +136,9 @@ public Optional<Passenger> getPassenger(Long id) {
         trains.add(t);
 
     }
-    passenger.setTrains(trains);
+    passenger.setTrains(trains);*/
 
-    return Optional.ofNullable(passenger);
+    return single;
 
     // return Optional.ofNullable(passengerRepository.findById(id)
     // .orElseThrow(() -> new NoSuchPassengerExistsException("NO PASSENGER PRESENT

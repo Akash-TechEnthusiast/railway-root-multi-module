@@ -46,8 +46,10 @@ public class PassengerController_Mysql {
 
     }
 
-    @GetMapping("getPassengerById/{id}")
-    public Optional<Passenger> getPassengerById(@PathVariable Long id) {
+    @GetMapping(path = "/getPassenger/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public Optional<Passenger> getPassengerById(@PathVariable String id) {
         return passengerServiceImpl.getPassenger(id);
     }
 
