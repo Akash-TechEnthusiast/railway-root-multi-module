@@ -15,7 +15,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 @Repository
-public interface AddressRepository extends JpaRepository<Address, Long> {
+public interface AddressRepository extends JpaRepository<Address, String> {
 
     // @Query("SELECT a FROM Address a JOIN a.passenger p WHERE p.id =
     // :passengerId")

@@ -14,7 +14,7 @@ public class UserServiceTestImpl implements UserServiceTests {
 
     private final Map<String, String> userDatabase = new HashMap<>();
 
-    private final Map<Long, User> userData = new HashMap<>(); // Simulating a database
+    private final Map<String, User> userData = new HashMap<>(); // Simulating a database
 
     @Override
     public String saveUser(String name, String email) {

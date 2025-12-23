@@ -10,7 +10,7 @@ import org.springframework.data.repository.query.Param;
 import com.india.railway.model.mysql.Passenger;
 
 @Repository
-public interface PassengerRepository extends JpaRepository<Passenger, Long> {
+public interface PassengerRepository extends JpaRepository<Passenger, String> {
 
     // @EntityGraph(attributePaths = "trains")
     // Optional<Passenger> findById(Long id);

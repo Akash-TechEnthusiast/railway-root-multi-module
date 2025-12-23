@@ -1,0 +1,58 @@
+create passenger
+id and pnumber and train_number,userNumber are auto generated fields need pass as null
+if we pass any value system will not genearate those fields it will skip the fields
+
+postman request POST 'http://localhost:9191/api/passenger/create' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --body '{
+    "id": null,
+    "name": "akask",
+    "age": 25,
+    "aadhar_no": "123456789012",
+    "email": "akash@gmail.com",
+    "cellno": "+919876543210",
+    "dob": "1999-05-10",
+    "pincode": "509103",
+    "salary": 25000,
+    "pnumber": null,
+    "gender": "Male",
+    "user": {
+         "userNumber": null,
+            "username": "akashuser",
+            "email": null,
+            "mobileNumber": null,
+            "password": "password123",
+            "confirmPassword": null,
+            "userProfile": null,
+            "roles": null
+    },
+    "address": [
+        {
+            "street": "MG Road",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "country": "India",
+            "pincode": "509103"
+        },
+        {
+            "street": "MG colony",
+            "city": "wanaparthy",
+            "state": "Telangana",
+            "country": "India",
+            "pincode": "509103"
+        }
+    ],
+    "trains": [
+        {
+            "id": 1,
+            "train_name":"kk",
+            "train_number" :null
+        },
+         {
+            "id": 2,
+            "train_name":"k2",
+            "train_number" :null
+        }
+    ]
+}'

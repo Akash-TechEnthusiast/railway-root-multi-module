@@ -64,12 +64,12 @@ public class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public User getUserById(@PathVariable Long id) {
+	public User getUserById(@PathVariable String id) {
 		return userService.getUserById(id);
 	}
 
 	@DeleteMapping("/{id}")
-	public void deleteUser(@PathVariable Long id) {
+	public void deleteUser(@PathVariable String id) {
 		userService.deleteUser(id);
 	}
 

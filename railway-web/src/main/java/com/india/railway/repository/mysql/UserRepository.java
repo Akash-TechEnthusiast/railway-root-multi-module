@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import com.india.railway.model.mysql.User;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
     // Define custom queries or methods if needed
 
     User findByUsername(String username);

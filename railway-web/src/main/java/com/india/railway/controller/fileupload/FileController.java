@@ -1,13 +1,11 @@
 package com.india.railway.controller.fileupload;
 
-import org.apache.http.entity.FileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.india.railway.model.mysql.FileUpload;
-import com.india.railway.repository.mysql.FileUploadRepository;
 import com.india.railway.service.mysql.FileService;
 
 @RestController

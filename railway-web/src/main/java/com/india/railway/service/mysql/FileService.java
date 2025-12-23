@@ -1,6 +1,5 @@
 package com.india.railway.service.mysql;
 
-import org.apache.http.entity.FileEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;

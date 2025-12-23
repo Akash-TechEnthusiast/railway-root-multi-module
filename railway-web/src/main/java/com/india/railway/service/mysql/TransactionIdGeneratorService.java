@@ -15,7 +15,7 @@ public class TransactionIdGeneratorService {
     private EntityManager entityManager;
 
     @Transactional
-    public Long generateNextId(String entity_name, int incrementSize) {
+    public String generateNextId(String entityName, int incrementSize,String fieldName) {
         // Fetch the current value from the id_generator table
 
         Query query = entityManager.createNativeQuery(
@@ -26,7 +26,7 @@ public class TransactionIdGeneratorService {
                         "WHERE entity_name = :entity_name FOR UPDATE",
                 Tuple.class);
 
-        query.setParameter("entity_name", entity_name);
+        query.setParameter("entity_name", entityName);
 
         Tuple tuple = (Tuple) query.getSingleResult();
 
@@ -37,14 +37,17 @@ public class TransactionIdGeneratorService {
         // Increment the current value
         Long nextValue = currentValue + incrementSize;
 
+        String formattedValue = String.format("%05d", nextValue);
+        String generatedId = prefix.trim() + year.trim() + formattedValue;
+
         // Update the current value in the table
         Query updateQuery = entityManager.createNativeQuery(
                 "UPDATE auto_code_generation SET current_value = :nextValue WHERE entity_name = :entity_name");
         updateQuery.setParameter("nextValue", nextValue);
-        updateQuery.setParameter("entity_name", entity_name);
+        updateQuery.setParameter("entity_name", entityName);
         updateQuery.executeUpdate();
 
-        return nextValue;
+        return generatedId;
 
     }
 }

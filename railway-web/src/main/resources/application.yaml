@@ -16,11 +16,7 @@ spring:
     name: railway-web
 
 
-  kafka:
-    producer:
-      bootstrap-servers: localhost:9092
-      key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+
 
   cloud:
     gcp:
@@ -52,12 +48,12 @@ spring:
       port: 27017
       database: indian_railway
 
-  elasticsearch:
-    uris: http://localhost:9200
-    username: elastic
-    password: "K9I+Ytqgl*qRs9cjOD4m"
-    connection-timeout: 10s
-    socket-timeout: 30s
+  #elasticsearch:
+   # uris: http://localhost:9200
+   # username: elastic
+   # password: "K9I+Ytqgl*qRs9cjOD4m"
+   # connection-timeout: 10s
+   # socket-timeout: 30s
 
   security:
     oauth2:

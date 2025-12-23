@@ -13,7 +13,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 @Repository
-public interface TrainRepository extends JpaRepository<Train, Long> {
+public interface TrainRepository extends JpaRepository<Train, String> {
 
     @Query("SELECT t.train_name AS trainName,t.train_number AS trainNumber FROM Train t JOIN t.passengers p WHERE p.id = :passengerId")
     List<TrainNameProjection> findTrainsByPassengerId(@Param("passengerId") Long passengerId);
