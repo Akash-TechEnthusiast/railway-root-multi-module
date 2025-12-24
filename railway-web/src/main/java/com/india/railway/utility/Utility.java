@@ -5,11 +5,13 @@ import java.time.ZoneId;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 
 @Component
-public class Utilitys {
+@Slf4j
+public class Utility {
 
 	
 
@@ -121,6 +123,15 @@ public class Utilitys {
 	        return word;
 	    }
 
+
+
+	public static void executionTime(long pastTimeMillis,String operation) {
+
+		long currentTimeMillis = System.currentTimeMillis();
+		long differenceMillis = currentTimeMillis - pastTimeMillis;
+
+		log.info("Execution Time {} (ms) For The Operation : {}", differenceMillis,operation);
+	}
 	   
 	
 

@@ -28,6 +28,9 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 
+    implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+    annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
+
     // --- Kafka ---
     //implementation 'org.springframework.kafka:spring-kafka'
 
@@ -46,6 +49,8 @@ dependencies {
     // --- Lombok ---
     compileOnly 'org.projectlombok:lombok:1.18.24'
     annotationProcessor 'org.projectlombok:lombok:1.18.24'
+
+
 
     // --- Mail ---
     implementation 'com.sun.mail:jakarta.mail:2.0.1'

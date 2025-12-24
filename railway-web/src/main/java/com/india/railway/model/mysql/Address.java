@@ -27,13 +27,14 @@ public class Address {
     @ManyToOne(cascade = CascadeType.ALL)
     private Passenger passenger;
 
+    private String street;
     private String city;
     private String state;
     private String country;
     private String pincode;
     private String doorno;
     private String wardno;
-    private String street;
+
 
     @Override
     public boolean equals(Object obj) {

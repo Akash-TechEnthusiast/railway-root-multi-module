@@ -1,5 +1,6 @@
 package com.india.railway.controller.passenger;
 
+import com.india.railway.dto.PassengerRequestDTO;
 import com.india.railway.exception.ApiResponse;
 import com.india.railway.service.mysql.PassengerService;
 import lombok.RequiredArgsConstructor;
@@ -30,8 +31,8 @@ public class PassengerController_Mysql {
     @PostMapping(path = "/create",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ApiResponse<Passenger>> addPassenger(@RequestBody Passenger passenger) throws IllegalAccessException {
-        return passengerServiceImpl.addPassenger(passenger);
+    public ResponseEntity<ApiResponse<Passenger>> addPassenger(@RequestBody PassengerRequestDTO dto) throws IllegalAccessException {
+        return passengerServiceImpl.addPassenger(dto);
     }
 
     @PutMapping("updatePassenger/{id}")

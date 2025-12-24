@@ -8,9 +8,13 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
+import com.india.railway.dao.PassengerDao;
+import com.india.railway.dto.PassengerRequestDTO;
 import com.india.railway.exception.*;
+import com.india.railway.mapper.PassengerMapper;
 import com.india.railway.model.mysql.*;
 import com.india.railway.utility.EntityValidation;
+import com.india.railway.utility.Utility;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -52,42 +56,48 @@ public class PassengerServiceImpl implements PassengerService {
     @Autowired
     ExecutorService passengerExecutor;
 
+    @Autowired
+    PassengerMapper passengerMapper;
+
+    @Autowired
+    PassengerDao passengerDao;
+
     @Override
-    public ResponseEntity<ApiResponse<Passenger>> addPassenger(Passenger passenger) throws IllegalAccessException {
+    public ResponseEntity<ApiResponse<Passenger>> addPassenger(PassengerRequestDTO dto) throws IllegalAccessException {
 
         try {
-            Passenger saved = (Passenger) passengerExecutor.submit(() -> {
-                Instant start = Instant.now();
+            Passenger response= (Passenger) passengerExecutor.submit(() -> {
+                long currentTimeMillis = System.currentTimeMillis();
 
                 /*if (passengerRepository.existsById(passenger.getId())) {
                     throw new PassengerAlreadyExistsException("Passenger already exists!!");
                 }*/
 
-                if (passenger.getTrains() == null || passenger.getTrains().isEmpty()) {
+                if (dto.getTrainIds()== null || dto.getTrainIds().isEmpty()) {
                     throw new EntityNotFoundException("Trains list could not be empty");
                 }
+                    // passengerMapper.toEntity(dto);
+                Passenger passenger = passengerMapper.toEntity(dto);
 
-                List<String> validationErrors = entityValidation.validate(passenger);
+                List<String> validationErrors = entityValidation.validate(dto);
                 if (!validationErrors.isEmpty()) {
                     return apiResponseFactory.validationError(validationErrors);
                 }
-
+                // skipping the auto generation fields for onetoone and manytomany relationships
+                // those will come as dropdowns from the client side
                 autoCodeGeneratorService.generateId(passenger);
-                Passenger data = passengerRepository.save(passenger);
 
+                Passenger data= passengerDao.savePassenger(passenger);
 
-                Instant end = Instant.now();
-                long executionMilliSeconds = Duration.between(start, end).toMillis();
-                log.info("Started at: {}", start);
-                log.info("Ended at: {}", end);
-                log.info("Execution time for passenger save: {} milli seconds", executionMilliSeconds);
+                Utility.executionTime(currentTimeMillis,"passenger save");
 
                 return data;
             }).get();
 
+            //Passenger saved =new Passenger();
 
             return apiResponseFactory.success(
-                    saved,
+                    response,
                     "Passenger created successfully",
                     HttpStatus.CREATED
             );
@@ -121,7 +131,8 @@ public Optional<Passenger> getPassenger(String id) {
 
     Optional<Passenger> single = passengerRepository.findById(id);
     String value=single.get().getUser().getId();
-    String username=single.get().getUser().getUsername();
+    //String username=single.get().getUser().getUsername();
+    //String text=single.get().getTrains().iterator().next().getTrain_name();
 
     /*Passenger passenger = passengerRepository.findPassengerWithTrains(id)
             .orElseThrow(() -> new RuntimeException("Passenger not found"));

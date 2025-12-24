@@ -2,13 +2,17 @@ package com.india.railway.utility;
 
 
 import java.lang.reflect.Field;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.*;
 import jakarta.validation.constraints.*;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 
 @Component
+@Slf4j
 public class EntityValidation {
 
     public List<String> validate(Object obj) {
@@ -28,6 +32,7 @@ public class EntityValidation {
         Field[] fields = obj.getClass().getDeclaredFields();
 
         for (Field field : fields) {
+            log.info("processing attribute: {}",field.getName());
             field.setAccessible(true);
             Object value;
 
@@ -118,6 +123,8 @@ public class EntityValidation {
             }
 
             // ---------------- Collection Checks ----------------
+
+
             if (value instanceof Collection<?> col) {
                 if (field.isAnnotationPresent(Size.class)) {
                     Size size = field.getAnnotation(Size.class);
@@ -126,10 +133,21 @@ public class EntityValidation {
                     }
                 }
 
+
+                Class<?> elementType = getCollectionGenericType(field);
+
+                // ✅ Only recurse for complex objects
                 // validate nested elements
-                for (Object element : col) {
-                    validateObject(element, errors, fieldPath);
+                if (elementType != null && !isSimpleType(elementType)) {
+                    for (Object element : col) {
+                        if (element != null) {
+                            validateObject(element, errors, fieldPath);
+                        }
+                    }
                 }
+
+
+
             }
 
             // ---------------- Nested Object Validation ----------------
@@ -144,6 +162,30 @@ public class EntityValidation {
             }
         }
     }
+
+    private static boolean isSimpleType(Class<?> type) {
+        return type.isPrimitive()
+                || type.equals(String.class)
+                || Number.class.isAssignableFrom(type)
+                || type.equals(Boolean.class)
+                || type.equals(Character.class)
+                || type.equals(java.util.UUID.class)
+                || type.getPackageName().startsWith("java.time");
+    }
+
+
+    private static Class<?> getCollectionGenericType(Field field) {
+        Type type = field.getGenericType();
+
+        if (type instanceof ParameterizedType pt) {
+            Type arg = pt.getActualTypeArguments()[0];
+            if (arg instanceof Class<?>) {
+                return (Class<?>) arg;
+            }
+        }
+        return null;
+    }
+
 
     private static boolean isPrimitiveOrWrapper(Class<?> type) {
         return type.isPrimitive()
