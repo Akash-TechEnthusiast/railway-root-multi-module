@@ -98,7 +98,7 @@ public class AutoCodeGeneratorService {
     private boolean isRelationField(Field field) {
         return field.isAnnotationPresent(OneToMany.class)
                 || field.isAnnotationPresent(OneToOne.class)
-                || field.isAnnotationPresent(ManyToOne.class);
+                || field.isAnnotationPresent(ManyToOne.class)
                 || field.isAnnotationPresent(ManyToMany.class);
 
 
