@@ -195,6 +195,17 @@ This is a Spring Boot based RESTful web application for managing tasks. It provi
     - TASK 100
 
 
+************** BUSINESS USE CASES IMPLEMENTED IN THIS APPLICATION **********************
+
+1. create passenger using one to many relationship between passenger and address entity
+2. create passenger using one to one relationship between passenger and user entity
+3. create passenger using many to many relationship between passenger and train entity
+4. update passenger details ( in the all above relationships)
+5. fetch passenger details ( in the all above relationships)
+6. fetch all passengers details ( in the all above relationships)
+7. forgot password functionality implementation using spring boot and jwt token
+
+
 
 different text formats
 ****************************************************************************************************
