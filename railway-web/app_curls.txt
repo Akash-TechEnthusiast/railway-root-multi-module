@@ -75,7 +75,7 @@ postman request POST 'http://localhost:9191/api/passenger/create' \
     "salary": 25000,
     "pnumber": null,
     "gender": "Male",
-    "userId":"00003",
+    "userId":"00003",  // here we need to pass existing userId it is unique field in passenger table possible for duplicate users issue
     "address": [
         {
             "street": "MG Road",
