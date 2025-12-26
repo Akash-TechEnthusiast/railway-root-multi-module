@@ -79,14 +79,30 @@ This is a Spring Boot based RESTful web application for managing tasks. It provi
 
 
     - TASK 2
+
+               employee role hirarchy represent in tree model using self realtionship in database
+
     - TASK 3
-    - TASK 4
+              document upload and download using spring boot restful api
+    - TASK 4 
+              sending sms 
+
+                TWILIO auth token => YG144PL8CTBW3E49JNM2GDWF  used akash922.g and 707---707 number 
     - TASK 5
+              payment integration using razorpay
     - TASK 6
-    - TASK 7
+               document generation using jasper report for the receipt payment 
+               ticket generation / Hall Ticket / Boarding Pass
+
+               
+    - TASK 7  
+               sending email using spring boot ===========================>  done 
     - TASK 8
-    - TASK 9
+               data migration from mysql to elasticsearch using spring boot application
+    - TASK 9  
+               spring boot application to interact with elasticsearch
     - TASK 10
+               data migration for the basic master records    ============> done 
     - TASK 11
     - TASK 12
     - TASK 13
@@ -177,6 +193,65 @@ This is a Spring Boot based RESTful web application for managing tasks. It provi
     - TASK 98
     - TASK 99
     - TASK 100
+
+
+
+different text formats
+****************************************************************************************************
+1. First
+2. Second
+3. Third
+
+
+    - TASK 98
+    - TASK 99
+    - TASK 100
+
+- First
+- Second
+- Third
+- Fourth
+
+```java
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello, World!");
+    }
+}
+``` 
+
+✅ ❌ 🚀 🔥 ⚠️ 💡 🧠
+
+# Railway Web Application
+
+🟢 Active
+
+🔵 Stable
+
+🔴 Failed
+
+## Features
+
+
+**Bold Text**
+*Italic Text*
+***Bold + Italic***
+~~Strikethrough~~
+
+# H1 Heading
+## H2 Heading
+### H3 Heading
+#### H4 Heading
+##### H5 Heading
+###### H6 Heading
+
+⚠️ **Warning:** This action is irreversible  
+✅ **Success:** Operation completed  
+❌ **Error:** Invalid input
+
+
+
+
 
 
 
