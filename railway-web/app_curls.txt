@@ -644,6 +644,36 @@ postman request 'http://localhost:9191/api/employee/tree' \
   --header 'Accept: application/json' \
   --body ''
 
+Response
+
+{
+    "id": 1,
+    "name": "Akash",
+    "subordinates": [
+        {
+            "id": 2,
+            "name": "Bhanu",
+            "subordinates": [
+                {
+                    "id": 4,
+                    "name": "Daniel",
+                    "subordinates": [
+                        {
+                            "id": 5,
+                            "name": "Eshawar",
+                            "subordinates": []
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "name": "Chandra",
+            "subordinates": []
+        }
+    ]
+}
 
 
 
