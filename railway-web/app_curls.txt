@@ -593,5 +593,62 @@ postman request 'http://localhost:9191/api/passenger/bypagewise?page=0&size=2&so
   --body ''
 
 
+create employee
+
+postman request POST 'http://localhost:9191/api/employee/create' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --body '{
+  "name": "Akash",
+  "address": "Bangalore",
+  "qualification": "B.Tech",
+  "gender": "Male",
+  "dateofbirth": "1998-05-10"
+}
+'
+
+create employee 2nd format
+
+postman request POST 'http://localhost:9191/api/employee/create' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --body '{
+  "name": "Suresh",
+  "address": "Chennai",
+  "qualification": "M.Tech",
+  "gender": "Male",
+  "dateofbirth": "1985-03-15",
+  "subordinates": [
+    {
+      "name": "Anil",
+      "address": "Chennai",
+      "qualification": "B.Sc",
+      "gender": "Male",
+      "dateofbirth": "1999-01-10"
+    },
+    {
+      "name": "Sunita",
+      "address": "Chennai",
+      "qualification": "BCA",
+      "gender": "Female",
+      "dateofbirth": "2000-07-22"
+    }
+  ]
+}
+'
+
+fetch employee hierarchy
+
+postman request 'http://localhost:9191/api/employee/tree' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --body ''
+
+
+
+
+
+
+
 
 
