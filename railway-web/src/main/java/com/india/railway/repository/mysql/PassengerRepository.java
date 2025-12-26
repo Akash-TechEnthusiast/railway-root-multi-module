@@ -20,4 +20,6 @@ public interface PassengerRepository extends JpaRepository<Passenger, String> {
     @Query("SELECT p FROM Passenger p JOIN FETCH p.trains WHERE p.id = :id")
     Optional<Passenger> findPassengerWithTrains(@Param("id") Long id);
 
+    Optional<Passenger> findByNameAndCellno(String name, String cellno);
+
 }

@@ -70,9 +70,12 @@ public class PassengerServiceImpl implements PassengerService {
             Passenger response= (Passenger) passengerExecutor.submit(() -> {
                 long currentTimeMillis = System.currentTimeMillis();
 
-                /*if (passengerRepository.existsById(passenger.getId())) {
+                // duplicate passenger check
+                Optional<Passenger> duplicatePassenger=
+                passengerRepository.findByNameAndCellno(dto.getName(), dto.getCellno());
+                if (duplicatePassenger.isPresent()) {
                     throw new PassengerAlreadyExistsException("Passenger already exists!!");
-                }*/
+                }
 
                 if (dto.getTrainIds()== null || dto.getTrainIds().isEmpty()) {
                     throw new EntityNotFoundException("Trains list could not be empty");
