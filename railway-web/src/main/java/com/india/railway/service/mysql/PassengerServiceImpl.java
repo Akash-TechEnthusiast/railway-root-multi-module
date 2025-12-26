@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.Set;
 import java.util.concurrent.ExecutorService;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.india.railway.dao.PassengerDao;
 import com.india.railway.dto.PassengerRequestDTO;
 import com.india.railway.exception.*;
@@ -94,8 +95,6 @@ public class PassengerServiceImpl implements PassengerService {
                 return data;
             }).get();
 
-            //Passenger saved =new Passenger();
-
             return apiResponseFactory.success(
                     response,
                     "Passenger created successfully",
@@ -108,20 +107,41 @@ public class PassengerServiceImpl implements PassengerService {
 
 
 @Override
-public ResponseEntity<ApiResponse<Passenger>> updatePassenger(Passenger passenger) {
-    Passenger existingPassenger = passengerRepository.findById(passenger.getId()).orElse(null);
+public ResponseEntity<ApiResponse<Passenger>> updatePassenger(PassengerRequestDTO dto) {
+    Passenger existingPassenger = passengerRepository.findById(dto.getId()).orElse(null);
     if (existingPassenger == null)
         throw new NoSuchEmployeeExistsException("No Such Employee exists!!");
     else {
-        existingPassenger.setName(passenger.getName());
-        existingPassenger.setAddress(passenger.getAddress());
-        Passenger updated = passengerRepository.save(existingPassenger);
+        try {
+            Passenger passenger = passengerMapper.updateEntity(dto,existingPassenger);
+            Passenger response= (Passenger) passengerExecutor.submit(() -> {
+                long currentTimeMillis = System.currentTimeMillis();
 
-        return apiResponseFactory.success(
-                updated,
-                "Passenger updated successfully",
-                HttpStatus.CREATED
-        );
+                List<String> validationErrors = entityValidation.validate(passenger);
+                if (!validationErrors.isEmpty()) {
+                    return apiResponseFactory.validationError(validationErrors);
+                }
+                // skipping the auto generation fields for onetoone and manytomany relationships
+                // those will come as dropdowns from the client side
+                autoCodeGeneratorService.generateId(passenger);
+               // ObjectMapper mapper = new ObjectMapper();
+               // String passengerJson = mapper.writeValueAsString(passenger);
+               // log.info("Updating Passenger: " + passengerJson);
+                Passenger data= passengerDao.updatePassenger(passenger);
+
+                Utility.executionTime(currentTimeMillis,"passenger save");
+
+                return data;
+            }).get();
+
+            return apiResponseFactory.success(
+                    response,
+                    "Passenger updated successfully",
+                    HttpStatus.OK
+            );
+        } catch (Exception e) {
+            throw new RuntimeException("Failed to save passenger", e);
+        }
     }
 }
 
@@ -130,7 +150,7 @@ public Optional<Passenger> getPassenger(String id) {
     // TODO Auto-generated method stub
 
     Optional<Passenger> single = passengerRepository.findById(id);
-    String value=single.get().getUser().getId();
+    //String value=single.get().getUser().getId();
     //String username=single.get().getUser().getUsername();
     //String text=single.get().getTrains().iterator().next().getTrain_name();
 
@@ -185,5 +205,14 @@ public Page<Address> findAddressByPassengerId(Long passengerId, int page, int si
     Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
     return addressRepository.findAddressListByPassengerId(passengerId, pageable);
 }
+
+    public ResponseEntity<ApiResponse<Passenger>> deletePassenger(String id) {
+         passengerDao.deletePassenger(id);
+        return apiResponseFactory.success(
+                null,
+                "Passenger deleted successfully",
+                HttpStatus.OK
+        );
+    }
 
 }

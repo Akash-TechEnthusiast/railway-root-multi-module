@@ -18,8 +18,10 @@ public interface PassengerService {
     ResponseEntity<ApiResponse<Passenger>> addPassenger(PassengerRequestDTO dto) throws IllegalAccessException;
 
     // Method to update details of a Customer
-    ResponseEntity<ApiResponse<Passenger>> updatePassenger(Passenger passenger);
+    ResponseEntity<ApiResponse<Passenger>> updatePassenger(PassengerRequestDTO dto);
 
     List<Passenger> getAllPassengers();
+
+    ResponseEntity<ApiResponse<Passenger>> deletePassenger(String id);
 
 }

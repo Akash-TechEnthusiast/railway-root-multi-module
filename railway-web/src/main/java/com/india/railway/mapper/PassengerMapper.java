@@ -3,6 +3,7 @@ package com.india.railway.mapper;
 import com.india.railway.dto.AddressDTO;
 import com.india.railway.dto.PassengerRequestDTO;
 import com.india.railway.model.mysql.*;
+import com.india.railway.repository.mysql.TrainRepository;
 import com.india.railway.repository.mysql.UserRepository;
 import org.mapstruct.*;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +19,8 @@ import java.util.stream.Collectors;
 @Component
 public class PassengerMapper {
 
-
+    @Autowired
+    TrainRepository trainRepository;
 
     /* ================= CREATE ================= */
 
@@ -104,7 +106,60 @@ public class PassengerMapper {
          return passenger;
      }
 
+public Passenger updateEntity(PassengerRequestDTO dto, Passenger passenger) {
 
+    // 1️⃣ Load EXISTING Passenger (MANDATORY)
+
+    // 2️⃣ Load EXISTING User (MANDATORY)
+    if (dto.getUserId() != null) {
+        User user = new User();
+        user.setId(dto.getUserId());
+        passenger.setUser(user); // managed entity → SAFE
+    }
+
+    // 3️⃣ Update simple fields
+    passenger.setName(dto.getName()!=null?dto.getName():passenger.getName());
+    passenger.setAge(dto.getAge()!=null?dto.getAge():passenger.getAge());
+    passenger.setAadhar_no(dto.getAadhar_no()!=null?dto.getAadhar_no():passenger.getAadhar_no());
+    passenger.setEmail(dto.getEmail()!=null?dto.getEmail():passenger.getEmail());
+    passenger.setCellno(dto.getCellno()!=null?dto.getCellno():passenger.getCellno());
+    passenger.setDob(dto.getDob()!=null?dto.getDob():passenger.getDob());
+    passenger.setPincode(dto.getPincode()!=null?dto.getPincode():passenger.getPincode());
+    passenger.setSalary(dto.getSalary()!=null?dto.getSalary():passenger.getSalary());
+    passenger.setGender(dto.getGender()!=null?dto.getGender():passenger.getGender());
+    passenger.setCreatedDate(null);
+    passenger.setLastModifiedDate(null);
+
+    // 4️⃣ Update Address (replace old ones)
+    if (dto.getAddress() != null) {
+        List<Address> addresses = dto.getAddress().stream().map(a -> {
+            Address address = new Address();
+            address.setId(a.getId()!=null?a.getId():null); // important for UPDATE
+            address.setStreet(a.getStreet()!=null?a.getStreet():address.getStreet());
+            address.setCity(a.getCity()!=null?a.getCity():address.getCity());
+            address.setState(a.getState()!=null?a.getState():address.getState());
+            address.setCountry(a.getCountry()!=null?a.getCountry():address.getCountry());
+            //address.setPassenger(passenger); // owning side
+            return address;
+        }).toList();
+
+        passenger.setAddress(addresses);
+    }
+
+    // 5️⃣ Update Trains (IDs only)
+    if (dto.getTrainIds() != null) {
+        Set<Train> trains = dto.getTrainIds().stream().map(id -> {
+            Train train = new Train();
+            train.setId(id);
+            return train;
+        }).collect(Collectors.toSet());
+
+        passenger.setTrains(trains);
+    }
+
+    // 6️⃣ Save (UPDATE happens)
+    return passenger;
+}
 
 
     /* ================= UPDATE ================= */

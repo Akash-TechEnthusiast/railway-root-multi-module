@@ -36,8 +36,8 @@ public class PassengerController_Mysql {
     }
 
     @PutMapping("updatePassenger/{id}")
-    public ResponseEntity<ApiResponse<Passenger>> updatePassenger(@RequestBody Passenger passenger) {
-        return passengerServiceImpl.updatePassenger(passenger);
+    public ResponseEntity<ApiResponse<Passenger>> updatePassenger(@RequestBody PassengerRequestDTO dto) {
+        return passengerServiceImpl.updatePassenger(dto);
     }
 
 
@@ -86,5 +86,13 @@ public class PassengerController_Mysql {
         Page<Address> addressList = passengerServiceImpl.findAddressByPassengerId(passengerId, page, size, sortBy);
         return ResponseEntity.ok(addressList);
     }
+
+    @DeleteMapping(path = "/delete/{id}",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ApiResponse<Passenger>> deletePassengerById(@PathVariable String id) {
+        return passengerServiceImpl.deletePassenger(id);
+    }
+
 
 }
