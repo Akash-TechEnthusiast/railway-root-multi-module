@@ -15,7 +15,7 @@ import com.india.railway.model.mysql.Employee;
 import com.india.railway.model.mysql.EmployeeTreeDTO;
 import com.india.railway.service.mysql.EmployeeServiceImpl;
 
-@RequestMapping(path = "/employee")
+@RequestMapping(path = "/api/employee")
 @RestController
 public class EmployeeController {
 

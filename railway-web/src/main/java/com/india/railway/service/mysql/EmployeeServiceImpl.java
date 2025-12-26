@@ -44,12 +44,12 @@ public class EmployeeServiceImpl implements EmployeService {
 	// CustomerAlreadyExistsException when customer detail
 	// already exist
 	public String addEmployee(Employee employee) {
-		Employee existingEmployee = empRespository.findById(employee.getId()).orElse(null);
-		if (existingEmployee == null) {
+		//Employee existingEmployee = empRespository.findById(employee.getId()).orElse(null);
+		//if (existingEmployee == null) {
 			empRespository.save(employee);
 			return "Employee added successfully";
-		} else
-			throw new EmployeeAlreadyExistsException("Employee already exists!!");
+		//} else
+		//	throw new EmployeeAlreadyExistsException("Employee already exists!!");
 	}
 
 	// Method to update customer details to database.Throws

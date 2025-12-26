@@ -104,6 +104,7 @@ This is a Spring Boot based RESTful web application for managing tasks. It provi
     - TASK 10
                data migration for the basic master records    ============> done 
     - TASK 11
+                swagger implementation in spring boot application
     - TASK 12
     - TASK 13
     - TASK 14

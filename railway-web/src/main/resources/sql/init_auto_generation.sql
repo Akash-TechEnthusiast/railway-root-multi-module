@@ -41,3 +41,9 @@ INSERT IGNORE INTO `users` (`id`, `password`, `user_number`, `username`) VALUES 
 INSERT IGNORE INTO `users` (`id`, `password`, `user_number`, `username`) VALUES ('00008', 'password123', 'IND/RAIL/USR/2024/00008', 'akashuser');
 INSERT IGNORE INTO `users` (`id`, `password`, `user_number`, `username`) VALUES ('00009', 'password123', 'IND/RAIL/USR/2024/00009', 'akashuser');
 INSERT IGNORE INTO `users` (`id`, `password`, `user_number`, `username`) VALUES ('00010', 'password123', 'IND/RAIL/USR/2024/00010', 'akashuser');
+
+INSERT IGNORE INTO `employee` (`id`, `address`, `dateofbirth`, `gender`, `name`, `qualification`) VALUES ('1', 'Bangalore', '1998-05-10', 'Male', 'Akash', 'B.Tech');
+INSERT IGNORE INTO `employee` (`id`, `address`, `dateofbirth`, `gender`, `name`, `qualification`, `manager_id`) VALUES ('2', 'Bangalore', '1998-05-10', 'Male', 'Bhanu', 'B.Tech', '1');
+INSERT IGNORE INTO `employee` (`id`, `address`, `dateofbirth`, `gender`, `name`, `qualification`, `manager_id`) VALUES ('3', 'Chennai', '1985-03-15', 'Male', 'Chandra', 'M.Tech', '1');
+INSERT IGNORE INTO `employee` (`id`, `address`, `dateofbirth`, `gender`, `name`, `qualification`, `manager_id`) VALUES ('4', 'Chennai', '1999-01-10', 'Male', 'Daniel', 'B.Sc', '2');
+INSERT IGNORE INTO `employee` (`id`, `address`, `dateofbirth`, `gender`, `name`, `qualification`, `manager_id`) VALUES ('5', 'Chennai', '2000-07-22', 'Female', 'Eshawar', 'BCA', '4');
