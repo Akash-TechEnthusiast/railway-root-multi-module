@@ -288,7 +288,12 @@ postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
       "pincode": "509103",
       "salary": 25000,
       "gender": "Male",
-      "userId": "00002",
+      "userId": null,
+      "user": {
+          "id": "00002",
+          "userNumber": "IND/RAIL/USR/2024/00002",
+          "username": "akashuser"
+      },
       "address": [
           {
               "id": "00009",
@@ -305,16 +310,25 @@ postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
               "country": "India"
           },
           {
-              "id": "00058",
+              "id": "00059",
               "street": "gandhichowk",
               "city": "wanaparthykk",
               "state": "Telanganakk",
               "country": "Indiakk"
           }
       ],
-      "trainIds": [
-          "1",
-          "4"
+      "trainIds": null,
+      "trains": [
+          {
+              "id": "1",
+              "train_name": null,
+              "train_number": "IND/RAIL/TRN/2024/00054"
+          },
+          {
+              "id": "4",
+              "train_name": "k2",
+              "train_number": "IND/RAIL/TRN/2024/00007"
+          }
       ]
   }
 
@@ -325,6 +339,9 @@ postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
     --header 'Content-Type: application/json' \
     --header 'Accept: application/json' \
     --body ''
+
+
+Response
 
 
     [
@@ -339,7 +356,12 @@ postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
             "pincode": "509103",
             "salary": 25000,
             "gender": "Male",
-            "userId": "00002",
+            "userId": null,
+            "user": {
+                "id": "00002",
+                "userNumber": "IND/RAIL/USR/2024/00002",
+                "username": "akashuser"
+            },
             "address": [
                 {
                     "id": "00009",
@@ -356,16 +378,25 @@ postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
                     "country": "India"
                 },
                 {
-                    "id": "00058",
+                    "id": "00059",
                     "street": "gandhichowk",
                     "city": "wanaparthykk",
                     "state": "Telanganakk",
                     "country": "Indiakk"
                 }
             ],
-            "trainIds": [
-                "1",
-                "4"
+            "trainIds": null,
+            "trains": [
+                {
+                    "id": "4",
+                    "train_name": "k2",
+                    "train_number": "IND/RAIL/TRN/2024/00007"
+                },
+                {
+                    "id": "1",
+                    "train_name": null,
+                    "train_number": "IND/RAIL/TRN/2024/00054"
+                }
             ]
         },
         {
@@ -379,9 +410,15 @@ postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
             "pincode": "509103",
             "salary": 25000,
             "gender": "Male",
-            "userId": "00007",
+            "userId": null,
+            "user": {
+                "id": "00007",
+                "userNumber": "IND/RAIL/USR/2024/00004",
+                "username": "akashuser"
+            },
             "address": [],
-            "trainIds": []
+            "trainIds": null,
+            "trains": []
         },
         {
             "id": "00011",
@@ -394,7 +431,12 @@ postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
             "pincode": "509103",
             "salary": 25000,
             "gender": "Male",
-            "userId": "00006",
+            "userId": null,
+            "user": {
+                "id": "00006",
+                "userNumber": "IND/RAIL/USR/2024/00004",
+                "username": "akashuser"
+            },
             "address": [
                 {
                     "id": "00036",
@@ -418,13 +460,137 @@ postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
                     "country": "Indiakk"
                 }
             ],
-            "trainIds": [
-                "1",
-                "2"
+            "trainIds": null,
+            "trains": [
+                {
+                    "id": "2",
+                    "train_name": null,
+                    "train_number": "IND/RAIL/TRN/2024/00055"
+                },
+                {
+                    "id": "1",
+                    "train_name": null,
+                    "train_number": "IND/RAIL/TRN/2024/00054"
+                }
+            ]
+        },
+        {
+            "id": "00014",
+            "name": "akask",
+            "age": 25,
+            "aadhar_no": "123456789012",
+            "email": "akash@gmail.com",
+            "cellno": "+919876543210",
+            "dob": "1999-05-10",
+            "pincode": "509103",
+            "salary": 25000,
+            "gender": "Male",
+            "userId": null,
+            "user": {
+                "id": "00005",
+                "userNumber": "IND/RAIL/USR/2024/00004",
+                "username": "akashuser"
+            },
+            "address": [
+                {
+                    "id": "00063",
+                    "street": "MG Road",
+                    "city": "Hyderabad",
+                    "state": "Telangana",
+                    "country": "India"
+                },
+                {
+                    "id": "00064",
+                    "street": "MG colony",
+                    "city": "wanaparthy",
+                    "state": "Telangana",
+                    "country": "India"
+                },
+                {
+                    "id": "00065",
+                    "street": "MG colonykk",
+                    "city": "wanaparthykk",
+                    "state": "Telanganakk",
+                    "country": "Indiakk"
+                }
+            ],
+            "trainIds": null,
+            "trains": [
+                {
+                    "id": "1",
+                    "train_name": null,
+                    "train_number": "IND/RAIL/TRN/2024/00054"
+                },
+                {
+                    "id": "2",
+                    "train_name": null,
+                    "train_number": "IND/RAIL/TRN/2024/00055"
+                }
+            ]
+        },
+        {
+            "id": "00015",
+            "name": "akask",
+            "age": 25,
+            "aadhar_no": "123456789012",
+            "email": "akash@gmail.com",
+            "cellno": "+919876543210",
+            "dob": "1999-05-10",
+            "pincode": "509103",
+            "salary": 25000,
+            "gender": "Male",
+            "userId": null,
+            "user": {
+                "id": "00003",
+                "userNumber": "IND/RAIL/USR/2024/00003",
+                "username": "akashuser"
+            },
+            "address": [
+                {
+                    "id": "00066",
+                    "street": "MG Road",
+                    "city": "Hyderabad",
+                    "state": "Telangana",
+                    "country": "India"
+                },
+                {
+                    "id": "00067",
+                    "street": "MG colony",
+                    "city": "wanaparthy",
+                    "state": "Telangana",
+                    "country": "India"
+                },
+                {
+                    "id": "00068",
+                    "street": "MG colonykk",
+                    "city": "wanaparthykk",
+                    "state": "Telanganakk",
+                    "country": "Indiakk"
+                }
+            ],
+            "trainIds": null,
+            "trains": [
+                {
+                    "id": "1",
+                    "train_name": null,
+                    "train_number": "IND/RAIL/TRN/2024/00054"
+                },
+                {
+                    "id": "2",
+                    "train_name": null,
+                    "train_number": "IND/RAIL/TRN/2024/00055"
+                }
             ]
         }
     ]
 
+
+fetch passenger by pagewise
+
+postman request 'http://localhost:9191/api/passenger/bypagewise?page=0&size=2&sortBy=createdDate' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --body ''
 
 
 

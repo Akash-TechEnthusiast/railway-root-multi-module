@@ -198,10 +198,15 @@ public List<PassengerRequestDTO> getAllPassengers() {
     // 'getAllPassengers'");
 }
 
-public Page<Passenger> getAllPassengers(int page, int size, String sortBy) {
-    Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());
-    return passengerRepository.findAll(pageable);
-}
+
+    public Page<PassengerRequestDTO> getAllPassengers(int page, int size, String sortBy) {
+
+        Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).descending());
+
+        Page<Passenger> passengerPage = passengerRepository.findAll(pageable);
+
+        return passengerPage.map(passenger -> passengerMapper.toDto(passenger));
+    }
 
 public Page<Train> getTrainsByPassengerId(Long passengerId, int page, int size, String sortBy) {
     Pageable pageable = PageRequest.of(page, size, Sort.by(sortBy).ascending());

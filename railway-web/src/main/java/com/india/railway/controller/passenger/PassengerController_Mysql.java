@@ -56,12 +56,12 @@ public class PassengerController_Mysql {
 
 
     @GetMapping("/bypagewise")
-    public ResponseEntity<Page<Passenger>> getAllPassengers(
+    public ResponseEntity<Page<PassengerRequestDTO>> getAllPassengers(
             @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "5") int size,
-            @RequestParam(defaultValue = "id") String sortBy) {
+            @RequestParam(defaultValue = "2") int size,
+            @RequestParam(defaultValue = "createdDate") String sortBy) {
 
-        Page<Passenger> passengers = passengerServiceImpl.getAllPassengers(page, size, sortBy);
+        Page<PassengerRequestDTO> passengers = passengerServiceImpl.getAllPassengers(page, size, sortBy);
         return ResponseEntity.ok(passengers);
     }
 

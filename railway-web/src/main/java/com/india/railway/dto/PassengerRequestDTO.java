@@ -55,6 +55,8 @@ public class PassengerRequestDTO {
     @NotNull(message = "userId must not be null")
     private String userId;
 
+    private UserDTO user;
+
 
     @Valid
     @Size(min = 1, message = "Passenger must have at least one address")
@@ -62,7 +64,16 @@ public class PassengerRequestDTO {
 
     private Set<String> trainIds;
 
-    // getters & setters
+    private Set<TrainDTO> trains;
+
+    public Set<TrainDTO> getTrains() {
+        return trains;
+    }
+
+    public void setTrains(Set<TrainDTO> trains) {
+        this.trains = trains;
+    }
+// getters & setters
 
 
     public String getAadhar_no() {

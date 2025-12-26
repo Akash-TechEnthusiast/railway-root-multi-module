@@ -2,6 +2,8 @@ package com.india.railway.mapper;
 
 import com.india.railway.dto.AddressDTO;
 import com.india.railway.dto.PassengerRequestDTO;
+import com.india.railway.dto.TrainDTO;
+import com.india.railway.dto.UserDTO;
 import com.india.railway.model.mysql.*;
 import com.india.railway.repository.mysql.TrainRepository;
 import com.india.railway.repository.mysql.UserRepository;
@@ -180,7 +182,12 @@ public Passenger updateEntity(PassengerRequestDTO dto, Passenger passenger) {
 
         // ===== USER =====
         if (passenger.getUser() != null) {
-            dto.setUserId(passenger.getUser().getId());
+            //dto.setUserId(passenger.getUser().getId());
+            UserDTO userDTO = new UserDTO();
+            userDTO.setId(passenger.getUser().getId());
+            userDTO.setUsername(passenger.getUser().getUsername());
+            userDTO.setUserNumber(passenger.getUser().getUserNumber());
+            dto.setUser(userDTO);
         }
 
         // ===== ADDRESS LIST =====
@@ -202,12 +209,19 @@ public Passenger updateEntity(PassengerRequestDTO dto, Passenger passenger) {
 
         // ===== TRAINS =====
         if (passenger.getTrains() != null) {
-            Set<String> trainIds = new HashSet<>();
+            //Set<String> trainIds = new HashSet<>();
+            Set<TrainDTO> trains = new HashSet<>();
 
             for (Train train : passenger.getTrains()) {
-                trainIds.add(train.getId());
+                TrainDTO trainDTO = new TrainDTO();
+                trainDTO.setId(train.getId());
+                trainDTO.setTrain_name(train.getTrain_name());
+                trainDTO.setTrain_number(train.getTrain_number());
+                trains.add(trainDTO);
+               // trainIds.add(train.getId());
             }
-            dto.setTrainIds(trainIds);
+            //dto.setTrainIds(trainIds);
+            dto.setTrains(trains);
         }
 
         return dto;
