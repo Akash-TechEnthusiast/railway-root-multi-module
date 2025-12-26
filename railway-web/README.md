@@ -1,3 +1,14 @@
+****  Application Profile Management in Spring Boot ****
+
+if we mention spring.profile.active=dev  
+in application.properties file then it will take dev profile from application-dev.properties file
+along with common properties from application.properties file as well 
+
+if same property is present in both files then it will take from application-dev.properties file
+if same property is not present in application-dev.properties file then it will take from application.properties file
+
+
+
 Supported Java Version 17.0.15
 
 
