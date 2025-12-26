@@ -11,16 +11,16 @@ import org.springframework.http.ResponseEntity;
 public interface PassengerService {
 
     // Method to get customer by its Id
-    Optional<Passenger> getPassenger(String id);
+    Optional<PassengerRequestDTO> getPassenger(String id);
 
     // Method to add a new Customer
     // into the database
-    ResponseEntity<ApiResponse<Passenger>> addPassenger(PassengerRequestDTO dto) throws IllegalAccessException;
+    ResponseEntity<ApiResponse<PassengerRequestDTO>> addPassenger(PassengerRequestDTO dto) throws IllegalAccessException;
 
     // Method to update details of a Customer
-    ResponseEntity<ApiResponse<Passenger>> updatePassenger(PassengerRequestDTO dto);
+    ResponseEntity<ApiResponse<PassengerRequestDTO>> updatePassenger(PassengerRequestDTO dto);
 
-    List<Passenger> getAllPassengers();
+    List<PassengerRequestDTO> getAllPassengers();
 
     ResponseEntity<ApiResponse<Passenger>> deletePassenger(String id);
 

@@ -31,18 +31,18 @@ public class PassengerController_Mysql {
     @PostMapping(path = "/create",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<ApiResponse<Passenger>> addPassenger(@RequestBody PassengerRequestDTO dto) throws IllegalAccessException {
+    public ResponseEntity<ApiResponse<PassengerRequestDTO>> addPassenger(@RequestBody PassengerRequestDTO dto) throws IllegalAccessException {
         return passengerServiceImpl.addPassenger(dto);
     }
 
     @PutMapping("updatePassenger/{id}")
-    public ResponseEntity<ApiResponse<Passenger>> updatePassenger(@RequestBody PassengerRequestDTO dto) {
+    public ResponseEntity<ApiResponse<PassengerRequestDTO>> updatePassenger(@RequestBody PassengerRequestDTO dto) {
         return passengerServiceImpl.updatePassenger(dto);
     }
 
 
     @GetMapping("/fetch_all_passenger")
-    public List<Passenger> getAllPassengers() {
+    public List<PassengerRequestDTO> getAllPassengers() {
         return passengerServiceImpl.getAllPassengers();
 
     }
@@ -50,7 +50,7 @@ public class PassengerController_Mysql {
     @GetMapping(path = "/getPassenger/{id}",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public Optional<Passenger> getPassengerById(@PathVariable String id) {
+    public Optional<PassengerRequestDTO> getPassengerById(@PathVariable String id) {
         return passengerServiceImpl.getPassenger(id);
     }
 

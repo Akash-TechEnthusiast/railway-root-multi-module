@@ -162,6 +162,58 @@ public Passenger updateEntity(PassengerRequestDTO dto, Passenger passenger) {
 }
 
 
+    public PassengerRequestDTO toDto(Passenger passenger) {
+
+        PassengerRequestDTO dto = new PassengerRequestDTO();
+
+        // ===== BASIC FIELDS =====
+        dto.setId(passenger.getId());
+        dto.setName(passenger.getName());
+        dto.setAge(passenger.getAge());
+        dto.setAadhar_no(passenger.getAadhar_no());
+        dto.setEmail(passenger.getEmail());
+        dto.setCellno(passenger.getCellno());
+        dto.setDob(passenger.getDob());
+        dto.setPincode(passenger.getPincode());
+        dto.setSalary(passenger.getSalary());
+        dto.setGender(passenger.getGender());
+
+        // ===== USER =====
+        if (passenger.getUser() != null) {
+            dto.setUserId(passenger.getUser().getId());
+        }
+
+        // ===== ADDRESS LIST =====
+        if (passenger.getAddress() != null) {
+            List<AddressDTO> addressDTOs = new ArrayList<>();
+
+            for (Address address : passenger.getAddress()) {
+                AddressDTO addressDTO = new AddressDTO();
+                addressDTO.setId(address.getId());
+                addressDTO.setStreet(address.getStreet());
+                addressDTO.setCity(address.getCity());
+                addressDTO.setState(address.getState());
+                addressDTO.setCountry(address.getCountry());
+
+                addressDTOs.add(addressDTO);
+            }
+            dto.setAddress(addressDTOs);
+        }
+
+        // ===== TRAINS =====
+        if (passenger.getTrains() != null) {
+            Set<String> trainIds = new HashSet<>();
+
+            for (Train train : passenger.getTrains()) {
+                trainIds.add(train.getId());
+            }
+            dto.setTrainIds(trainIds);
+        }
+
+        return dto;
+    }
+
+
     /* ================= UPDATE ================= */
 /*
     @BeanMapping(nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)

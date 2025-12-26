@@ -56,3 +56,376 @@ postman request POST 'http://localhost:9191/api/passenger/create' \
         }
     ]
 }'
+
+create passenger 2nd format by passing userId and trainIds array
+
+
+postman request POST 'http://localhost:9191/api/passenger/create' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --body '{
+    "id": null,
+    "name": "akask",
+    "age": 25,
+    "aadhar_no": "123456789012",
+    "email": "akash@gmail.com",
+    "cellno": "+919876543210",
+    "dob": "1999-05-10",
+    "pincode": "509103",
+    "salary": 25000,
+    "pnumber": null,
+    "gender": "Male",
+    "userId":"00003",
+    "address": [
+        {
+            "street": "MG Road",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "country": "India",
+            "pincode": "509103"
+        },
+        {
+            "street": "MG colony",
+            "city": "wanaparthy",
+            "state": "Telangana",
+            "country": "India",
+            "pincode": "509103"
+        }
+        ,
+        {
+            "street": "MG colonykk",
+            "city": "wanaparthykk",
+            "state": "Telanganakk",
+            "country": "Indiakk",
+            "pincode": "509103k"
+        }
+    ],
+    "trainIds": [
+       1,2
+    ]
+}'
+
+Response
+
+
+{
+    "success": true,
+    "message": "Passenger created successfully",
+    "data": {
+        "id": "00015",
+        "name": "akask",
+        "age": 25,
+        "aadhar_no": "123456789012",
+        "email": "akash@gmail.com",
+        "cellno": "+919876543210",
+        "dob": "1999-05-10",
+        "pincode": "509103",
+        "salary": 25000,
+        "gender": "Male",
+        "userId": "00003",
+        "address": [
+            {
+                "id": "00066",
+                "street": "MG Road",
+                "city": "Hyderabad",
+                "state": "Telangana",
+                "country": "India"
+            },
+            {
+                "id": "00067",
+                "street": "MG colony",
+                "city": "wanaparthy",
+                "state": "Telangana",
+                "country": "India"
+            },
+            {
+                "id": "00068",
+                "street": "MG colonykk",
+                "city": "wanaparthykk",
+                "state": "Telanganakk",
+                "country": "Indiakk"
+            }
+        ],
+        "trainIds": [
+            "1",
+            "2"
+        ]
+    },
+    "errors": null,
+    "status": 201,
+    "timestamp": "2025-12-26T07:04:04.765642864Z",
+    "path": null
+}
+
+
+update passenger
+
+
+postman request PUT 'http://localhost:9191/api/passenger/updatePassenger/00005' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --body '{
+
+    "id": "00005",
+    "name": "akask",
+    "age": 25,
+    "aadhar_no": "123456789012",
+    "email": "akash@gmail.com",
+    "cellno": "+919876543210",
+    "dob": "1999-05-10",
+    "pincode": "509103",
+    "salary": 25000,
+    "pnumber": "IND/RAIL/PNR/2024/00005",
+    "gender": "Male",
+    "userId":"00002",
+    "address": [
+        {
+            "id": "00009",
+            "passenger": null,
+            "street": "gandhi nagar",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "country": "India",
+            "pincode": null,
+            "doorno": null,
+            "wardno": null
+        },
+        {
+            "id": "00010",
+            "passenger": null,
+            "street": "gandhi nagar",
+            "city": "wanaparthy",
+            "state": "Telangana",
+            "country": "India",
+            "pincode": null,
+            "doorno": null,
+            "wardno": null
+        },
+        {
+            "passenger": null,
+            "street": "gandhichowk",
+            "city": "wanaparthykk",
+            "state": "Telanganakk",
+            "country": "Indiakk",
+            "pincode": null,
+            "doorno": null,
+            "wardno": null
+        }
+    ],
+    "trainIds": [1,4],
+    "deleted": false
+}'
+
+Response
+
+
+{
+    "success": true,
+    "message": "Passenger updated successfully",
+    "data": {
+        "id": "00005",
+        "name": "akask",
+        "age": 25,
+        "aadhar_no": "123456789012",
+        "email": "akash@gmail.com",
+        "cellno": "+919876543210",
+        "dob": "1999-05-10",
+        "pincode": "509103",
+        "salary": 25000,
+        "gender": "Male",
+        "userId": "00002",
+        "address": [
+            {
+                "id": "00009",
+                "street": "gandhi nagar",
+                "city": "Hyderabad",
+                "state": "Telangana",
+                "country": "India"
+            },
+            {
+                "id": "00010",
+                "street": "gandhi nagar",
+                "city": "wanaparthy",
+                "state": "Telangana",
+                "country": "India"
+            },
+            {
+                "id": "00059",
+                "street": "gandhichowk",
+                "city": "wanaparthykk",
+                "state": "Telanganakk",
+                "country": "Indiakk"
+            }
+        ],
+        "trainIds": [
+            "1",
+            "4"
+        ]
+    },
+    "errors": null,
+    "status": 200,
+    "timestamp": "2025-12-26T07:00:16.825204541Z",
+    "path": null
+}
+
+
+Fetch passenger by Id
+
+postman request 'http://localhost:9191/api/passenger/getPassenger/00005' \
+  --header 'Content-Type: application/json' \
+  --header 'Accept: application/json' \
+  --body ''
+
+
+  {
+      "id": "00005",
+      "name": "akask",
+      "age": 25,
+      "aadhar_no": "123456789012",
+      "email": "akash@gmail.com",
+      "cellno": "+919876543210",
+      "dob": "1999-05-10",
+      "pincode": "509103",
+      "salary": 25000,
+      "gender": "Male",
+      "userId": "00002",
+      "address": [
+          {
+              "id": "00009",
+              "street": "gandhi nagar",
+              "city": "Hyderabad",
+              "state": "Telangana",
+              "country": "India"
+          },
+          {
+              "id": "00010",
+              "street": "gandhi nagar",
+              "city": "wanaparthy",
+              "state": "Telangana",
+              "country": "India"
+          },
+          {
+              "id": "00058",
+              "street": "gandhichowk",
+              "city": "wanaparthykk",
+              "state": "Telanganakk",
+              "country": "Indiakk"
+          }
+      ],
+      "trainIds": [
+          "1",
+          "4"
+      ]
+  }
+
+
+  Fetch all passengers
+
+  postman request 'http://localhost:9191/api/passenger/fetch_all_passenger' \
+    --header 'Content-Type: application/json' \
+    --header 'Accept: application/json' \
+    --body ''
+
+
+    [
+        {
+            "id": "00005",
+            "name": "akask",
+            "age": 25,
+            "aadhar_no": "123456789012",
+            "email": "akash@gmail.com",
+            "cellno": "+919876543210",
+            "dob": "1999-05-10",
+            "pincode": "509103",
+            "salary": 25000,
+            "gender": "Male",
+            "userId": "00002",
+            "address": [
+                {
+                    "id": "00009",
+                    "street": "gandhi nagar",
+                    "city": "Hyderabad",
+                    "state": "Telangana",
+                    "country": "India"
+                },
+                {
+                    "id": "00010",
+                    "street": "gandhi nagar",
+                    "city": "wanaparthy",
+                    "state": "Telangana",
+                    "country": "India"
+                },
+                {
+                    "id": "00058",
+                    "street": "gandhichowk",
+                    "city": "wanaparthykk",
+                    "state": "Telanganakk",
+                    "country": "Indiakk"
+                }
+            ],
+            "trainIds": [
+                "1",
+                "4"
+            ]
+        },
+        {
+            "id": "00007",
+            "name": "akask",
+            "age": 25,
+            "aadhar_no": "123456789012",
+            "email": "akash@gmail.com",
+            "cellno": "+919876543210",
+            "dob": "1999-05-10",
+            "pincode": "509103",
+            "salary": 25000,
+            "gender": "Male",
+            "userId": "00007",
+            "address": [],
+            "trainIds": []
+        },
+        {
+            "id": "00011",
+            "name": "akask",
+            "age": 25,
+            "aadhar_no": "123456789012",
+            "email": "akash@gmail.com",
+            "cellno": "+919876543210",
+            "dob": "1999-05-10",
+            "pincode": "509103",
+            "salary": 25000,
+            "gender": "Male",
+            "userId": "00006",
+            "address": [
+                {
+                    "id": "00036",
+                    "street": "MG Road",
+                    "city": "Hyderabad",
+                    "state": "Telangana",
+                    "country": "India"
+                },
+                {
+                    "id": "00037",
+                    "street": "MG colony",
+                    "city": "wanaparthy",
+                    "state": "Telangana",
+                    "country": "India"
+                },
+                {
+                    "id": "00038",
+                    "street": "MG colonykk",
+                    "city": "wanaparthykk",
+                    "state": "Telanganakk",
+                    "country": "Indiakk"
+                }
+            ],
+            "trainIds": [
+                "1",
+                "2"
+            ]
+        }
+    ]
+
+
+
+
+

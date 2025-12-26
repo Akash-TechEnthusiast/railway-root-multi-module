@@ -49,8 +49,8 @@ public class PassengerDao {
                 .map(Train::getId)
                 .toList();
         Set<Train> trains=new HashSet<>(trainRepository.findAllById(trainIds));
-        passenger.getTrains().clear();
-        passenger.setTrains(trains);
+        ///passenger.getTrains().clear();
+        //passenger.setTrains(trains);
 
         return passengerRepository.save(passenger);
     }

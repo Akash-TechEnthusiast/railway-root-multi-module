@@ -64,7 +64,7 @@ public class PassengerServiceImpl implements PassengerService {
     PassengerDao passengerDao;
 
     @Override
-    public ResponseEntity<ApiResponse<Passenger>> addPassenger(PassengerRequestDTO dto) throws IllegalAccessException {
+    public ResponseEntity<ApiResponse<PassengerRequestDTO>> addPassenger(PassengerRequestDTO dto) throws IllegalAccessException {
 
         try {
             Passenger response= (Passenger) passengerExecutor.submit(() -> {
@@ -95,8 +95,10 @@ public class PassengerServiceImpl implements PassengerService {
                 return data;
             }).get();
 
+            PassengerRequestDTO data= passengerMapper.toDto(response);
+
             return apiResponseFactory.success(
-                    response,
+                    data,
                     "Passenger created successfully",
                     HttpStatus.CREATED
             );
@@ -107,7 +109,7 @@ public class PassengerServiceImpl implements PassengerService {
 
 
 @Override
-public ResponseEntity<ApiResponse<Passenger>> updatePassenger(PassengerRequestDTO dto) {
+public ResponseEntity<ApiResponse<PassengerRequestDTO>> updatePassenger(PassengerRequestDTO dto) {
     Passenger existingPassenger = passengerRepository.findById(dto.getId()).orElse(null);
     if (existingPassenger == null)
         throw new NoSuchEmployeeExistsException("No Such Employee exists!!");
@@ -134,8 +136,10 @@ public ResponseEntity<ApiResponse<Passenger>> updatePassenger(PassengerRequestDT
                 return data;
             }).get();
 
+            PassengerRequestDTO data= passengerMapper.toDto(response);
+
             return apiResponseFactory.success(
-                    response,
+                    data,
                     "Passenger updated successfully",
                     HttpStatus.OK
             );
@@ -146,10 +150,11 @@ public ResponseEntity<ApiResponse<Passenger>> updatePassenger(PassengerRequestDT
 }
 
 @Override
-public Optional<Passenger> getPassenger(String id) {
+public Optional<PassengerRequestDTO> getPassenger(String id) {
     // TODO Auto-generated method stub
 
     Optional<Passenger> single = passengerRepository.findById(id);
+    PassengerRequestDTO data= passengerMapper.toDto(single.get());
     //String value=single.get().getUser().getId();
     //String username=single.get().getUser().getUsername();
     //String text=single.get().getTrains().iterator().next().getTrain_name();
@@ -169,7 +174,7 @@ public Optional<Passenger> getPassenger(String id) {
     }
     passenger.setTrains(trains);*/
 
-    return single;
+    return Optional.ofNullable(data);
 
     // return Optional.ofNullable(passengerRepository.findById(id)
     // .orElseThrow(() -> new NoSuchPassengerExistsException("NO PASSENGER PRESENT
@@ -183,9 +188,11 @@ public Optional<Passenger> getPassenger(String id) {
 
 
 @Override
-public List<Passenger> getAllPassengers() {
+public List<PassengerRequestDTO> getAllPassengers() {
 
-    return passengerRepository.findAll();
+    return passengerRepository.findAll().stream()
+            .map(passenger -> passengerMapper.toDto(passenger))
+            .toList();
     // TODO Auto-generated method stub
     // throw new UnsupportedOperationException("Unimplemented method
     // 'getAllPassengers'");
