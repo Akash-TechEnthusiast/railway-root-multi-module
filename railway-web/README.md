@@ -70,6 +70,113 @@ Devtools   -> Query Management (sql query editor)
 
 ===================================================================
 
+***** Task Management Application **********
+
+This is a Spring Boot based RESTful web application for managing tasks. It provides endpoints to create, read, update, and delete tasks.
+
+
+    - TASK 1 
+
+
+    - TASK 2
+    - TASK 3
+    - TASK 4
+    - TASK 5
+    - TASK 6
+    - TASK 7
+    - TASK 8
+    - TASK 9
+    - TASK 10
+    - TASK 11
+    - TASK 12
+    - TASK 13
+    - TASK 14
+    - TASK 15
+    - TASK 16
+    - TASK 17
+    - TASK 18
+    - TASK 19
+    - TASK 20
+    - TASK 21
+    - TASK 22
+    - TASK 23
+    - TASK 24
+    - TASK 25
+    - TASK 26
+    - TASK 27
+    - TASK 28
+    - TASK 29
+    - TASK 30
+    - TASK 31
+    - TASK 32
+    - TASK 33
+    - TASK 34
+    - TASK 35
+    - TASK 36
+    - TASK 37
+    - TASK 38
+    - TASK 39
+    - TASK 40
+    - TASK 41
+    - TASK 42
+    - TASK 43
+    - TASK 44
+    - TASK 45
+    - TASK 46
+    - TASK 47
+    - TASK 48
+    - TASK 49
+    - TASK 50
+    - TASK 51
+    - TASK 52
+    - TASK 53
+    - TASK 54
+    - TASK 55
+    - TASK 56
+    - TASK 57
+    - TASK 58
+    - TASK 59
+    - TASK 60
+    - TASK 61
+    - TASK 62
+    - TASK 63
+    - TASK 64
+    - TASK 65
+    - TASK 66
+    - TASK 67
+    - TASK 68
+    - TASK 69
+    - TASK 70
+    - TASK 71
+    - TASK 72
+    - TASK 73
+    - TASK 74
+    - TASK 75
+    - TASK 76
+    - TASK 77
+    - TASK 78
+    - TASK 79
+    - TASK 80
+    - TASK 81
+    - TASK 82
+    - TASK 83
+    - TASK 84
+    - TASK 85
+    - TASK 86
+    - TASK 87
+    - TASK 88
+    - TASK 89
+    - TASK 90
+    - TASK 91
+    - TASK 92
+    - TASK 93
+    - TASK 94
+    - TASK 95
+    - TASK 96
+    - TASK 97
+    - TASK 98
+    - TASK 99
+    - TASK 100
 
 
 
