@@ -1,0 +1,451 @@
+{
+	"info": {
+		"_postman_id": "60ca9e77-47ba-429c-816d-40f9d9b0a9f3",
+		"name": "IndianRailway Run Collection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "28576714",
+		"_collection_link": "https://dark-escape-589605.postman.co/workspace/Team-Workspace~5852609f-4f87-46c2-8534-207fba7e0b92/collection/28576714-60ca9e77-47ba-429c-816d-40f9d9b0a9f3?action=share&source=collection_link&creator=28576714"
+	},
+	"item": [
+		{
+			"name": "create employee single",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Akash\",\n  \"address\": \"Bangalore\",\n  \"qualification\": \"B.Tech\",\n  \"gender\": \"Male\",\n  \"dateofbirth\": \"1998-05-10\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/employee/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"employee",
+						"create"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "create employee with subordinates",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Suresh\",\n  \"address\": \"Chennai\",\n  \"qualification\": \"M.Tech\",\n  \"gender\": \"Male\",\n  \"dateofbirth\": \"1985-03-15\",\n  \"subordinates\": [\n    {\n      \"name\": \"Anil\",\n      \"address\": \"Chennai\",\n      \"qualification\": \"B.Sc\",\n      \"gender\": \"Male\",\n      \"dateofbirth\": \"1999-01-10\"\n    },\n    {\n      \"name\": \"Sunita\",\n      \"address\": \"Chennai\",\n      \"qualification\": \"BCA\",\n      \"gender\": \"Female\",\n      \"dateofbirth\": \"2000-07-22\"\n    }\n  ]\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/employee/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"employee",
+						"create"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "create sub employee with mgr id",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Akash\",\n  \"address\": \"Bangalore\",\n  \"qualification\": \"B.Tech\",\n  \"gender\": \"Male\",\n  \"dateofbirth\": \"1998-05-10\",\n  \"manager\":{ \"id\" : 1}\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/employee/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"employee",
+						"create"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "get employee tree",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Akash\",\n  \"address\": \"Bangalore\",\n  \"qualification\": \"B.Tech\",\n  \"gender\": \"Male\",\n  \"dateofbirth\": \"1998-05-10\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/employee/tree",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"employee",
+						"tree"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "get invoice",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"name\": \"Akash\",\n  \"address\": \"Bangalore\",\n  \"qualification\": \"B.Tech\",\n  \"gender\": \"Male\",\n  \"dateofbirth\": \"1998-05-10\"\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/invoice",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"invoice"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "create passenger sub entity Ids",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": null,\n    \"name\": \"akask\",\n    \"age\": 25,\n    \"aadhar_no\": \"123456789012\",\n    \"email\": \"akash@gmail.com\",\n    \"cellno\": \"+919876543210\",\n    \"dob\": \"1999-05-10\",\n    \"pincode\": \"509103\",\n    \"salary\": 25000,\n    \"pnumber\": null,\n    \"gender\": \"Male\",\n    \"userId\":\"00003\",\n    \"address\": [\n        {\n            \"street\": \"MG Road\",\n            \"city\": \"Hyderabad\",\n            \"state\": \"Telangana\",\n            \"country\": \"India\",\n            \"pincode\": \"509103\"\n        },\n        {\n            \"street\": \"MG colony\",\n            \"city\": \"wanaparthy\",\n            \"state\": \"Telangana\",\n            \"country\": \"India\",\n            \"pincode\": \"509103\"\n        }\n        ,\n        {\n            \"street\": \"MG colonykk\",\n            \"city\": \"wanaparthykk\",\n            \"state\": \"Telanganakk\",\n            \"country\": \"Indiakk\",\n            \"pincode\": \"509103k\"\n        }\n    ],\n    \"trainIds\": [\n       1,2\n    ]\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/passenger/create",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"passenger",
+						"create"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "fetch passenger",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/passenger/getPassenger/00018",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"passenger",
+						"getPassenger",
+						"00018"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "fetch all passenger",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/passenger/fetch_all_passenger",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"passenger",
+						"fetch_all_passenger"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "fetch all passenger by pagewise",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/passenger/bypagewise?page=2&size=2&sortBy=createdDate",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"passenger",
+						"bypagewise"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "2"
+						},
+						{
+							"key": "size",
+							"value": "2"
+						},
+						{
+							"key": "sortBy",
+							"value": "createdDate"
+						}
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		},
+		{
+			"name": "update passenger",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					},
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\n    \"id\": \"00005\",\n    \"name\": \"akask\",\n    \"age\": 25,\n    \"aadhar_no\": \"123456789012\",\n    \"email\": \"akash@gmail.com\",\n    \"cellno\": \"+919876543210\",\n    \"dob\": \"1999-05-10\",\n    \"pincode\": \"509103\",\n    \"salary\": 25000,\n    \"pnumber\": \"IND/RAIL/PNR/2024/00005\",\n    \"gender\": \"Male\",\n    \"userId\":\"00002\",\n    \"address\": [\n        {\n            \"id\": \"00009\",\n            \"passenger\": null,\n            \"street\": \"gandhi nagar\",\n            \"city\": \"Hyderabad\",\n            \"state\": \"Telangana\",\n            \"country\": \"India\",\n            \"pincode\": null,\n            \"doorno\": null,\n            \"wardno\": null\n        },\n        {\n            \"id\": \"00010\",\n            \"passenger\": null,\n            \"street\": \"gandhi nagar\",\n            \"city\": \"wanaparthy\",\n            \"state\": \"Telangana\",\n            \"country\": \"India\",\n            \"pincode\": null,\n            \"doorno\": null,\n            \"wardno\": null\n        },\n        {\n            \"passenger\": null,\n            \"street\": \"gandhichowk\",\n            \"city\": \"wanaparthykk\",\n            \"state\": \"Telanganakk\",\n            \"country\": \"Indiakk\",\n            \"pincode\": null,\n            \"doorno\": null,\n            \"wardno\": null\n        }\n    ],\n    \"trainIds\": [1,4],\n    \"deleted\": false\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:9191/api/passenger/updatePassenger/00005",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "9191",
+					"path": [
+						"api",
+						"passenger",
+						"updatePassenger",
+						"00005"
+					]
+				},
+				"description": "Generated from cURL: curl -X POST \"http://localhost:8080/api/passenger/create\" \\\n  -H \"Content-Type: application/json\" \\\n  -d '{\n    \"name\": \"John Doe\",\n    \"email\": \"john.doe@example.com\",\n    \"age\": 30,\n    \"phone\": \"9876543210\",\n    \"address\": {\n      \"street\": \"123 Main St\",\n      \"city\": \"Delhi\",\n      \"state\": \"DL\",\n      \"zip\": \"110001\"\n    },\n    \"trainIds\": [1, 2]\n  }'"
+			},
+			"response": []
+		}
+	]
+}

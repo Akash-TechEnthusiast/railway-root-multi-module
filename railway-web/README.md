@@ -1,5 +1,15 @@
 ****  Application Profile Management in Spring Boot ****
 
+we have collection api list in the railway-web application
+
+with names IndianRailway_Run_Collection.postman_collection.json 
+
+we can import this file into postman and run after every api implementation other api' s should not break
+majorly with jap api s like create and update fetch api for passenger 
+
+it will be main and basic structure for all other entities 
+
+
 if we mention spring.profile.active=dev  
 in application.properties file then it will take dev profile from application-dev.properties file
 along with common properties from application.properties file as well 
@@ -108,6 +118,7 @@ This is a Spring Boot based RESTful web application for managing tasks. It provi
     - TASK 12
                document upload and dowload 
     - TASK 13
+               chat bot imlementation using spring boot 
     - TASK 14
     - TASK 15
     - TASK 16

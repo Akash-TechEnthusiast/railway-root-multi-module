@@ -28,7 +28,7 @@ public class DocumentController {
         model.addAttribute("studentClass", "Grade 10");
         model.addAttribute("items", items);
         model.addAttribute("total", total);
-
+        // picking from templates/invoice.html
         return "invoice";
     }
 }

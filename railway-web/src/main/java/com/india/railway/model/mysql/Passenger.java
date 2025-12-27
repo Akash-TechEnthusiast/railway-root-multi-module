@@ -91,7 +91,7 @@ public class Passenger extends Auditable {
        // @OneToOne(cascade = CascadeType.ALL)
         @OneToOne
         @JoinColumn(name = "user_id", referencedColumnName = "id", nullable = false)
-        @NotNull(message = "user must not be null")
+        //@NotNull(message = "user must not be null")
         private User user;
 
 
