@@ -26,7 +26,7 @@ public class WhatsAppNotification {
         public static final String ACCOUNT_SID = "";
         public static final String AUTH_TOKEN = "[AuthToken]";
 
-        @PostConstruct
+        //@PostConstruct
         public void testWhatsApp() {
             Twilio.init(ACCOUNT_SID, AUTH_TOKEN);
             Message message = Message.creator(
@@ -38,5 +38,4 @@ public class WhatsAppNotification {
 
             System.out.println(message.getSid());
         }
-
 }
