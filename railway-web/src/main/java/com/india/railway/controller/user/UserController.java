@@ -2,6 +2,7 @@ package com.india.railway.controller.user;
 
 import java.util.Map;
 
+import com.india.railway.service.mysql.AutoCodeGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -29,11 +30,14 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Autowired
+	AutoCodeGeneratorService autoCodeGeneratorService;
+
 	// @Autowired
 	// private PasswordEncoder passwordEncoder;
 
 	@PostMapping(path = "/adduser")
-	public @ResponseBody String addUsers(@RequestBody User user) {
+	public @ResponseBody String addUsers(@RequestBody User user) throws IllegalAccessException {
 
 		User newuser = new User();
 		newuser.setUsername(user.getUsername());
@@ -41,13 +45,13 @@ public class UserController {
 		newuser.setMobileNumber(user.getMobileNumber());
 		newuser.setEmail(user.getEmail());
 		newuser.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
-		newuser.setConfirmPassword(user.getConfirmPassword());
+		newuser.setConfirmPassword(newuser.getPassword());
 
 		UserProfile up = new UserProfile();
 		up.setEmail("user@gmail.com");
 		up.setLastName("gandham");
 		newuser.setUserProfile(up);
-
+		autoCodeGeneratorService.generateId(newuser);
 		userService.saveUser(newuser);
 		return "Details got Saved";
 	}

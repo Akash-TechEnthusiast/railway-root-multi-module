@@ -1,5 +1,6 @@
 package com.india.railway.controller.auth;
 
+import com.india.railway.service.mysql.AutoCodeGeneratorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -20,6 +21,9 @@ public class AuthenticationController {
 
     @Autowired
     private AuthenticationManager authenticationManager;
+
+    @Autowired
+    AutoCodeGeneratorService autoCodeGeneratorService;
 
     @Autowired
     private JwtUtils jwtUtil;
@@ -52,13 +56,14 @@ public class AuthenticationController {
     @PostMapping("/register")
     @PreAuthorize("hasRole('USER')") // TEST (it should be added as ROLE_USER in
     // spring context)
-    public String register(@RequestBody User user) {
+    public String register(@RequestBody User user) throws IllegalAccessException {
         user.setPassword(new BCryptPasswordEncoder().encode(user.getPassword()));
         // user.setPassword("test");
         user.setEmail(user.getEmail());
         user.setMobileNumber(user.getMobileNumber());
         // save the user to the database
         // ...
+        autoCodeGeneratorService.generateId(user);
         User usera = userRepository.save(user);
         return "User registered successfully";
     }
