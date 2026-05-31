@@ -1,4 +1,4 @@
-package com.india.railway.controller.master;
+package com.india.railway.controller.dropdown_master;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

@@ -1,13 +1,11 @@
-package com.india.railway.controller.master;
+package com.india.railway.controller.dropdown_master;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.india.railway.model.master.Country;
-import com.india.railway.model.master.District;
 import com.india.railway.model.master.State;
-import com.india.railway.model.master.StateDTO;
 import com.india.railway.repository.mysql.CountryRepository;
 import com.india.railway.repository.mysql.StateRepository;
 
@@ -40,7 +38,7 @@ public class StateController {
         for (State st : rawStates) {
             String statecode = st.getCode();
             String stateName = st.getName();
-            states.add(new State(statecode, stateName));
+            states.add(new State(statecode, stateName,st.getId()));
         }
         return ResponseEntity.ok(states);
     }

@@ -34,9 +34,10 @@ public class State {
         this.country = country;
     }
 
-    public State(String code, String name) {
+    public State(String code, String name,Long id) {
         this.code = code;
         this.name = name;
+        this.id = id;
 
     }
 

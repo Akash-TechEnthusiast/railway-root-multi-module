@@ -9,7 +9,7 @@ import com.india.railway.model.mysql.FileUpload;
 import com.india.railway.service.mysql.FileService;
 
 @RestController
-@RequestMapping("/api/files")
+@RequestMapping("/api/file")
 public class FileController {
 
     @Autowired

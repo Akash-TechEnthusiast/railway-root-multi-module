@@ -1,11 +1,10 @@
-package com.india.railway.controller.master;
+package com.india.railway.controller.dropdown_master;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.india.railway.model.master.Country;
-import com.india.railway.model.master.State;
 import com.india.railway.repository.mysql.CountryRepository;
 
 import java.util.List;
