@@ -1,5 +1,6 @@
 package com.india.railway.controller.fileupload;
 
+import com.india.railway.dto.FileResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.*;
 import org.springframework.web.bind.annotation.*;
@@ -36,5 +37,17 @@ public class FileController {
                 .contentType(MediaType.parseMediaType(fileEntity.getType()))
                 .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=\"" + fileEntity.getName() + "\"")
                 .body(fileEntity.getData());
+    }
+
+    @GetMapping("/{fileId}")
+    public FileResponse getFile(@PathVariable Long fileId) {
+
+        FileUpload file = fileService.getFile(fileId);
+
+        return new FileResponse(
+                file.getId(),
+                file.getName(),
+                file.getType()
+        );
     }
 }
