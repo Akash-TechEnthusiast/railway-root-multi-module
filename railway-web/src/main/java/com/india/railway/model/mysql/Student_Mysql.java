@@ -39,7 +39,79 @@ public class Student_Mysql {
     private String profile;
     private String tc;
     private String sscMemo;
+    private String website;
+    private String sphone;
+    private String fphone;
+    private String datetime;
 
+    private String time;
+    private String ephone;
+    private String rating;
+    private String color;
+
+    public String getWebsite() {
+        return website;
+    }
+
+    public void setWebsite(String website) {
+        this.website = website;
+    }
+
+    public String getSphone() {
+        return sphone;
+    }
+
+    public void setSphone(String sphone) {
+        this.sphone = sphone;
+    }
+
+    public String getFphone() {
+        return fphone;
+    }
+
+    public void setFphone(String fphone) {
+        this.fphone = fphone;
+    }
+
+    public String getDatetime() {
+        return datetime;
+    }
+
+    public void setDatetime(String datetime) {
+        this.datetime = datetime;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getEphone() {
+        return ephone;
+    }
+
+    public void setEphone(String ephone) {
+        this.ephone = ephone;
+    }
+
+    public String getRating() {
+        return rating;
+    }
+
+    public void setRating(String rating) {
+        this.rating = rating;
+    }
+
+    public String getColor() {
+        return color;
+    }
+
+    public void setColor(String color) {
+        this.color = color;
+    }
 
     public String getSchoolname() {
         return schoolname;
